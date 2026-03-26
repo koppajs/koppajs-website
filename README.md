@@ -26,9 +26,13 @@
   <p align="center">
     <a href="https://github.com/koppajs/koppajs-documentation">Documentation</a>
     &middot;
+    <a href="https://github.com/koppajs/create-koppajs">create-koppajs</a>
+    &middot;
     <a href="https://github.com/koppajs/koppajs-core">KoppaJS Core</a>
     &middot;
-    <a href="https://github.com/koppajs/koppajs-example">Example Project</a>
+    <a href="https://github.com/koppajs/koppajs-vite-plugin">Vite Plugin</a>
+    &middot;
+    <a href="https://github.com/koppajs/koppajs-router">Router</a>
     &middot;
     <a href="https://github.com/koppajs/koppajs-website/issues">Issues</a>
   </p>
@@ -75,6 +79,10 @@ This repository is intended to hold:
 The repository is currently intentionally minimal.
 It already serves as the canonical website home in the ecosystem map, and it can
 grow incrementally as the public web presence is built out.
+
+That public ecosystem map now includes the released `create-koppajs` starter
+entry point and the published `@koppajs/koppajs-router` package alongside the
+existing core surfaces.
 
 Until that site surface is expanded, package READMEs and their local docs remain
 the best source for package-specific implementation and release details.
