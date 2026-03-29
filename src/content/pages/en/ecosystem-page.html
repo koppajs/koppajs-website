@@ -1,0 +1,82 @@
+  <article class="page">
+    <section class="page-hero page-hero--compact">
+      <div class="container page-hero__copy">
+        <p class="eyebrow">Ecosystem</p>
+        <h1>A small ecosystem with clear package boundaries.</h1>
+        <p class="lede">
+          The website should make the KoppaJS package landscape legible before a user ever opens a deep reference document.
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container package-grid">
+        <article class="card package-card">
+          <p class="card-kicker">Runtime</p>
+          <h2>@koppajs/koppajs-core</h2>
+          <p>Owns component registration, controller execution, template processing, and the explicit render loop.</p>
+          <a href="https://github.com/koppajs/koppajs-core" target="_blank" rel="noreferrer">Open repository</a>
+        </article>
+        <article class="card package-card">
+          <p class="card-kicker">Tooling</p>
+          <h2>@koppajs/koppajs-vite-plugin</h2>
+          <p>Compiles `.kpa` files into modules the runtime can execute and reason about.</p>
+          <a href="https://github.com/koppajs/koppajs-vite-plugin" target="_blank" rel="noreferrer">Open repository</a>
+        </article>
+        <article class="card package-card">
+          <p class="card-kicker">Navigation</p>
+          <h2>@koppajs/koppajs-router</h2>
+          <p>Provides route matching, active-state handling, and History API behavior for KoppaJS apps.</p>
+          <a href="https://github.com/koppajs/koppajs-router" target="_blank" rel="noreferrer">Open repository</a>
+        </article>
+        <article class="card package-card">
+          <p class="card-kicker">Getting started</p>
+          <h2>create-koppajs</h2>
+          <p>Shortens the path from curiosity to a working project skeleton.</p>
+          <a href="https://github.com/koppajs/create-koppajs" target="_blank" rel="noreferrer">Open repository</a>
+        </article>
+        <article class="card package-card">
+          <p class="card-kicker">Reference</p>
+          <h2>koppajs-documentation</h2>
+          <p>Keeps deep documentation separate so the website can stay focused on positioning and adoption.</p>
+          <a href="https://github.com/koppajs/koppajs-documentation" target="_blank" rel="noreferrer">Open repository</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="section section--contrast">
+      <div class="container">
+        <div class="section-header">
+          <p class="eyebrow">How it fits</p>
+          <h2>The pieces reinforce one another.</h2>
+        </div>
+        <div class="timeline-grid">
+          <article class="card card--contrast">
+            <h3>Author components</h3>
+            <p>Use `.kpa` files so component structure, style, and controller behavior stay close enough to inspect quickly.</p>
+          </article>
+          <article class="card card--contrast">
+            <h3>Compile with Vite</h3>
+            <p>The Vite plugin translates that component source into runtime-ready modules with explicit contracts.</p>
+          </article>
+          <article class="card card--contrast">
+            <h3>Route the application</h3>
+            <p>The router owns route metadata, active links, and navigation so the website shell stays predictable.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container callout">
+        <div>
+          <p class="eyebrow">Next step</p>
+          <h2>New users should leave this page knowing where to begin.</h2>
+        </div>
+        <div class="hero-actions">
+          <a class="button button--primary" data-route="/start" href="/start">Open the start path</a>
+          <a class="button button--ghost" data-route="/philosophy" href="/philosophy">Read the philosophy</a>
+        </div>
+      </div>
+    </section>
+  </article>

@@ -1,11 +1,29 @@
 import "./style.css";
 
 import { Core } from "@koppajs/koppajs-core";
-import { KoppajsRouter } from "@koppajs/koppajs-router";
+import {
+  KoppajsRouter,
+  KOPPAJS_ROUTE_CHANGE_EVENT,
+  setDocumentDescription,
+} from "@koppajs/koppajs-router";
+import { registerDocumentation } from "koppajs-documentation";
+import {
+  getDocumentationRouteMeta,
+} from "koppajs-documentation";
+import {
+  getDocumentationRouteMap,
+  installDocumentationRouteMap,
+} from "koppajs-documentation/routes";
+import {
+  getKoppaLocale,
+  KOPPAJS_LOCALE_CHANGE_EVENT,
+  syncKoppaDocumentLanguage,
+} from "koppajs-documentation/i18n";
 
 import { appRoutes } from "./app-routes";
 import { registerComponents } from "./components";
 import { registerPages } from "./pages";
+import { getSiteRouteMeta } from "./site-config";
 
 const waitForOutlet = async (root: ParentNode): Promise<HTMLElement> =>
   new Promise<HTMLElement>((resolve, reject) => {
@@ -37,6 +55,11 @@ const waitForOutlet = async (root: ParentNode): Promise<HTMLElement> =>
 
 registerComponents();
 registerPages();
+registerDocumentation();
+installDocumentationRouteMap({
+  basePath: "/docs",
+  pathStyle: "flat",
+});
 Core();
 
 const root =
@@ -54,4 +77,35 @@ const router = new KoppajsRouter({
 });
 
 router.init();
+syncWebsiteMetadata(router.getCurrentRoute().path);
 document.documentElement.classList.add("app-ready");
+
+if ("addEventListener" in window) {
+  window.addEventListener(KOPPAJS_ROUTE_CHANGE_EVENT, (event) => {
+    syncWebsiteMetadata(
+      (event as CustomEvent<{ path?: string }>).detail?.path ??
+        router.getCurrentRoute().path,
+    );
+  });
+
+  window.addEventListener(KOPPAJS_LOCALE_CHANGE_EVENT, () => {
+    const currentRoute = router.getCurrentRoute();
+
+    router.navigate(currentRoute.fullPath, { replace: true, scroll: false });
+    syncWebsiteMetadata(currentRoute.path);
+  });
+}
+
+function syncWebsiteMetadata(path: string): void {
+  const documentationRoutePath = Object.entries(getDocumentationRouteMap()).find(
+    ([, mappedPath]) => mappedPath === path,
+  )?.[0];
+
+  const metadata = documentationRoutePath
+    ? getDocumentationRouteMeta(documentationRoutePath, getKoppaLocale())
+    : getSiteRouteMeta(path, getKoppaLocale());
+
+  document.title = metadata.title;
+  setDocumentDescription(document, metadata.description);
+  syncKoppaDocumentLanguage(document);
+}

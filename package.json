@@ -32,7 +32,8 @@
   },
   "dependencies": {
     "@koppajs/koppajs-core": "^3.0.7",
-    "@koppajs/koppajs-router": "^0.1.2"
+    "@koppajs/koppajs-router": "^0.1.2",
+    "koppajs-documentation": "file:../koppajs-documentation"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",

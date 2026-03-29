@@ -1,0 +1,137 @@
+[template]
+  <article if="locale === 'en'" class="page">
+    <section class="page-hero page-hero--compact">
+      <div class="container page-hero__copy">
+        <p class="eyebrow">Privacy</p>
+        <h1>Privacy information for the KoppaJS website.</h1>
+        <p class="lede">
+          This page is the structural base for the privacy notice. Replace the
+          placeholder wording with the real operator, hosting, analytics, and
+          processing details before publishing legally binding information.
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container card-grid card-grid--two">
+        <article class="card">
+          <p class="card-kicker">Controller</p>
+          <h2>Identify the site operator.</h2>
+          <p>
+            Add the legal name, address, and contact details of the person or
+            entity responsible for this website.
+          </p>
+        </article>
+        <article class="card">
+          <p class="card-kicker">Hosting</p>
+          <h2>Document server and platform processing.</h2>
+          <p>
+            Explain where the site is hosted, which processor is involved, and
+            what server logs or operational data may be generated.
+          </p>
+        </article>
+        <article class="card">
+          <p class="card-kicker">Third parties</p>
+          <h2>List analytics, embeds, CDNs, or sponsor tooling.</h2>
+          <p>
+            If the website uses analytics, external media, fonts, sponsor
+            services, or donation providers, document them explicitly here.
+          </p>
+        </article>
+        <article class="card">
+          <p class="card-kicker">Rights</p>
+          <h2>Explain how people can exercise their privacy rights.</h2>
+          <p>
+            Include contact paths and the applicable rights to access,
+            rectification, deletion, objection, and complaint.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container callout">
+        <div>
+          <p class="eyebrow">Important</p>
+          <h2>Do not leave placeholder legal copy on a live production website.</h2>
+          <p>
+            This page gives the structure, not final legal advice. Replace it
+            with the actual information for the real site operator and setup.
+          </p>
+        </div>
+      </div>
+    </section>
+  </article>
+
+  <article if="locale === 'de'" class="page">
+    <section class="page-hero page-hero--compact">
+      <div class="container page-hero__copy">
+        <p class="eyebrow">Datenschutz</p>
+        <h1>Datenschutzhinweise für die KoppaJS-Website.</h1>
+        <p class="lede">
+          Diese Seite ist die strukturelle Grundlage für die Datenschutzerklärung.
+          Ersetze die Platzhalter durch die echten Angaben zu Betreiber, Hosting,
+          Analytik und Verarbeitung, bevor daraus rechtlich verbindliche
+          Informationen werden.
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container card-grid card-grid--two">
+        <article class="card">
+          <p class="card-kicker">Verantwortliche Stelle</p>
+          <h2>Betreiber der Website benennen.</h2>
+          <p>
+            Trage hier den rechtlichen Namen, die Anschrift und die
+            Kontaktdaten der Person oder Organisation ein, die für diese
+            Website verantwortlich ist.
+          </p>
+        </article>
+        <article class="card">
+          <p class="card-kicker">Hosting</p>
+          <h2>Server- und Plattformverarbeitung dokumentieren.</h2>
+          <p>
+            Erkläre, wo die Website gehostet wird, welcher Auftragsverarbeiter
+            beteiligt ist und welche Server-Logs oder Betriebsdaten anfallen können.
+          </p>
+        </article>
+        <article class="card">
+          <p class="card-kicker">Drittanbieter</p>
+          <h2>Analytik, Embeds, CDNs oder Sponsoring-Tools aufführen.</h2>
+          <p>
+            Wenn die Website Analytik, externe Medien, Fonts, Sponsoring- oder
+            Spenden-Dienste nutzt, müssen diese hier ausdrücklich dokumentiert werden.
+          </p>
+        </article>
+        <article class="card">
+          <p class="card-kicker">Rechte</p>
+          <h2>Erklären, wie Betroffene ihre Datenschutzrechte ausüben können.</h2>
+          <p>
+            Nenne Kontaktwege und die einschlägigen Rechte auf Auskunft,
+            Berichtigung, Löschung, Widerspruch und Beschwerde.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container callout">
+        <div>
+          <p class="eyebrow">Wichtig</p>
+          <h2>Keine Platzhalter-Texte auf einer echten Live-Website stehen lassen.</h2>
+          <p>
+            Diese Seite liefert die Struktur, aber keine finale Rechtsberatung.
+            Ersetze sie durch die echten Angaben zum tatsächlichen Betreiber und Setup.
+          </p>
+        </div>
+      </div>
+    </section>
+  </article>
+[/template]
+
+[ts]
+  import { createLocalizedPage } from "./localized-page";
+
+  return createLocalizedPage("");
+[/ts]

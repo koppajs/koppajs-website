@@ -1,0 +1,69 @@
+  <article class="page">
+    <section class="page-hero page-hero--compact">
+      <div class="container page-hero__copy">
+        <p class="eyebrow">Einstieg</p>
+        <h1>Ein pragmatischer Weg für Teams, die KoppaJS evaluieren möchten.</h1>
+        <p class="lede">Das Ziel ist nicht, neue Teams in Details zu ertränken. Es geht darum, ihnen einen glaubwürdigen ersten Weg zu geben.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container card-grid card-grid--three">
+        <article class="card">
+          <p class="card-kicker">Schritt 1</p>
+          <h2>Die Paketrollen verstehen.</h2>
+          <p>Starte auf der Ökosystem-Seite, damit Core, Router und Vite-Plugin jeweils eine klare Rolle haben.</p>
+        </article>
+        <article class="card">
+          <p class="card-kicker">Schritt 2</p>
+          <h2>Eine Pilot-App erzeugen oder skizzieren.</h2>
+          <p>Nutze <code>create-koppajs</code> oder spiegele diese Website-Baseline, um das Framework auf einer fokussierten Routenoberfläche zu testen.</p>
+        </article>
+        <article class="card">
+          <p class="card-kicker">Schritt 3</p>
+          <h2>Mit ausführbarer Evidenz entscheiden.</h2>
+          <p>Halte den ersten Versuch klein genug, damit Build-Geschwindigkeit, Routing und Wartbarkeit direkt beurteilt werden können.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section section--contrast">
+      <div class="container">
+        <div class="section-header">
+          <p class="eyebrow">Für wen das passt</p>
+          <h2>Am besten für Teams, die Kontrolle wichtig finden.</h2>
+        </div>
+        <div class="card-grid card-grid--two">
+          <article class="card card--contrast">
+            <h3>Guter Fit</h3>
+            <ul class="bullet-list">
+              <li>Teams, die explizite Architektur und Governance auf Repository-Ebene schätzen</li>
+              <li>Projekte, die ein kleineres mentales Modell als gängige UI-Frameworks wollen</li>
+              <li>Maintainer, die klare Grenzen zwischen Build, Runtime und Routing wollen</li>
+            </ul>
+          </article>
+          <article class="card card--contrast">
+            <h3>Schlechter Fit</h3>
+            <ul class="bullet-list">
+              <li>Teams, die einen riesigen Plugin-Marktplatz suchen, der Entscheidungen für sie trifft</li>
+              <li>Projekte, die versteckte Abstraktion sichtbaren Verträgen vorziehen</li>
+              <li>Organisationen, die ihre Architekturentscheidungen nicht offenlegen wollen</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container callout">
+        <div>
+          <p class="eyebrow">Ressourcen</p>
+          <h2>Nutze die Website zur Orientierung und gehe dann tiefer in die Paket-Repositories.</h2>
+        </div>
+        <div class="hero-actions">
+          <a class="button button--primary" href="https://github.com/koppajs/create-koppajs" target="_blank" rel="noreferrer">create-koppajs öffnen</a>
+          <a class="button button--ghost" href="https://github.com/koppajs/koppajs-documentation" target="_blank" rel="noreferrer">Dokumentations-Repo öffnen</a>
+        </div>
+      </div>
+    </section>
+  </article>

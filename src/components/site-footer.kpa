@@ -3,34 +3,41 @@
     <div class="container footer-grid">
       <section class="footer-block footer-block--brand" aria-label="KoppaJS closing statement">
         <p class="eyebrow">KoppaJS</p>
-        <h2>Built for teams that want clarity they can maintain.</h2>
-        <p class="footer-copy">
-          The official site exists to position the ecosystem, point to the right package
-          repos, and make support for the framework explicit.
-        </p>
+        <h2>{{ copy.footerHeading }}</h2>
+        <p class="footer-copy">{{ copy.footerCopy }}</p>
         <div class="footer-actions">
-          <a class="button button--primary button--small" data-route="/start" href="/start">
-            Start with KoppaJS
+          <a class="button button--primary button--small" data-route="/about" href="/about">
+            {{ copy.footerPrimaryCta }}
           </a>
           <a class="button button--ghost button--small" data-route="/support" href="/support">
-            Support the ecosystem
+            {{ copy.footerSecondaryCta }}
           </a>
         </div>
       </section>
 
       <section class="footer-block" aria-label="Internal navigation">
-        <h3>Navigate</h3>
+        <h3>{{ copy.footerNavigateLabel }}</h3>
         <ul class="footer-links">
-          <li><a data-route="/" href="/">Home</a></li>
-          <li><a data-route="/ecosystem" href="/ecosystem">Ecosystem</a></li>
-          <li><a data-route="/philosophy" href="/philosophy">Philosophy</a></li>
-          <li><a data-route="/start" href="/start">Start</a></li>
-          <li><a data-route="/support" href="/support">Support</a></li>
+          <li loop="item in navItems">
+            <a :data-route="item.path" :href="item.path">{{ item.label }}</a>
+          </li>
+          <li>
+            <a data-route="/docs" href="/docs">{{ copy.docsLabel }}</a>
+          </li>
+          <li>
+            <a data-route="/support" href="/support">{{ copy.supportLabel }}</a>
+          </li>
+          <li>
+            <a data-route="/datenschutz" href="/datenschutz">{{ copy.privacyLabel }}</a>
+          </li>
+          <li>
+            <a data-route="/impressum" href="/impressum">{{ copy.imprintLabel }}</a>
+          </li>
         </ul>
       </section>
 
       <section class="footer-block" aria-label="Official packages">
-        <h3>Official packages</h3>
+        <h3>{{ copy.footerPackagesLabel }}</h3>
         <ul class="footer-links">
           <li>
             <a href="https://github.com/koppajs/koppajs-core" target="_blank" rel="noreferrer">
@@ -59,13 +66,74 @@
         </ul>
       </section>
 
-      <section class="footer-block" aria-label="Support note">
-        <h3>What support funds</h3>
-        <p class="footer-copy">
-          Reference apps, docs, examples, tests, and the steady release discipline that
-          makes a small ecosystem trustworthy.
-        </p>
+      <section class="footer-block" aria-label="Language switch and support note">
+        <h3>{{ copy.footerFundingLabel }}</h3>
+        <p class="footer-copy">{{ copy.footerFundingCopy }}</p>
+        <div class="footer-locale">
+          <p class="footer-locale__label">{{ copy.footerLanguageLabel }}</p>
+          <div class="footer-locale__switch" aria-label="{{ copy.footerLanguageLabel }}">
+            <button
+              type="button"
+              class="footer-locale__button {{ locale === 'en' && 'is-active' }}"
+              data-locale="en"
+              onClick="switchLocale"
+            >
+              English
+            </button>
+            <button
+              type="button"
+              class="footer-locale__button {{ locale === 'de' && 'is-active' }}"
+              data-locale="de"
+              onClick="switchLocale"
+            >
+              Deutsch
+            </button>
+          </div>
+        </div>
       </section>
     </div>
   </footer>
 [/template]
+
+[ts]
+  import {
+    getKoppaLocale,
+    KOPPAJS_LOCALE_CHANGE_EVENT,
+    setKoppaLocale,
+  } from "koppajs-documentation/i18n";
+
+  import { getNavigationItems, getSiteChromeCopy } from "../site-config";
+
+  const applyLocale = (component, locale) => {
+    component.locale = locale;
+    component.navItems = getNavigationItems(locale);
+    component.copy = getSiteChromeCopy(locale);
+  };
+
+  return {
+    state: {
+      locale: "en",
+      navItems: [],
+      copy: {},
+    },
+    methods: {
+      handleLocaleChange(event) {
+        applyLocale(this, event.detail?.locale ?? getKoppaLocale());
+      },
+      switchLocale(event) {
+        const nextLocale = event.currentTarget?.dataset?.locale;
+
+        if (nextLocale) {
+          setKoppaLocale(nextLocale);
+        }
+      },
+    },
+    created() {
+      applyLocale(this, getKoppaLocale());
+      window.addEventListener(KOPPAJS_LOCALE_CHANGE_EVENT, this.handleLocaleChange);
+    },
+    beforeDestroy() {
+      window.removeEventListener(KOPPAJS_LOCALE_CHANGE_EVENT, this.handleLocaleChange);
+    },
+  };
+[/ts]

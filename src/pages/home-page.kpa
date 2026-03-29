@@ -1,17 +1,18 @@
 [template]
-  <article class="page">
+  <article if="locale === 'en'" class="page">
     <section class="page-hero">
       <div class="container hero-grid">
         <div class="hero-copy reveal">
           <p class="eyebrow">Official website</p>
           <h1>Build fast web interfaces without buying into hidden magic.</h1>
           <p class="lede">
-            KoppaJS keeps the runtime readable, the router explicit, and the build
-            pipeline honest enough to inspect.
+            KoppaJS keeps the runtime readable, the router explicit, and the
+            website focused on orientation before a user ever opens a deep
+            reference page.
           </p>
           <div class="hero-actions">
-            <a class="button button--primary" data-route="/start" href="/start">
-              See the adoption path
+            <a class="button button--primary" data-route="/about" href="/about">
+              See what KoppaJS is
             </a>
             <a class="button button--ghost" data-route="/ecosystem" href="/ecosystem">
               Explore the ecosystem
@@ -20,12 +21,12 @@
         </div>
 
         <aside class="panel hero-panel reveal delay-1">
-          <p class="panel-kicker">Signal over hype</p>
+          <p class="panel-kicker">Website structure</p>
           <ul class="bullet-list">
-            <li>Compile-time `.kpa` components with an explicit runtime</li>
-            <li>No virtual DOM dependency chain in the middle</li>
-            <li>Router contracts that stay visible in code review</li>
-            <li>An ecosystem shaped around one coherent mental model</li>
+            <li>`Home` frames the project and its surface</li>
+            <li>`Philosophy` explains why KoppaJS exists</li>
+            <li>`About` defines what the framework is for</li>
+            <li>`Ecosystem`, `Blog`, `Docs`, and `Support` cover the rest</li>
           </ul>
         </aside>
       </div>
@@ -34,16 +35,16 @@
     <section class="section section--tight">
       <div class="container stat-grid">
         <div class="stat-card">
-          <span class="stat-value">3</span>
-          <span class="stat-label">core official building blocks presented here</span>
+          <span class="stat-value">5</span>
+          <span class="stat-label">primary header sections for orientation</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value">2</span>
+          <span class="stat-label">right-side quick links for docs and support</span>
         </div>
         <div class="stat-card">
           <span class="stat-value">1</span>
-          <span class="stat-label">clear adoption path for new users</span>
-        </div>
-        <div class="stat-card">
-          <span class="stat-value">0</span>
-          <span class="stat-label">interest in hiding architecture behind vague magic</span>
+          <span class="stat-label">embedded documentation surface behind the website shell</span>
         </div>
       </div>
     </section>
@@ -51,29 +52,35 @@
     <section class="section">
       <div class="container">
         <div class="section-header">
-          <p class="eyebrow">Ecosystem</p>
-          <h2>Small surface, clear roles.</h2>
+          <p class="eyebrow">Orientation</p>
+          <h2>The site should help people know where to go next.</h2>
           <p>
-            KoppaJS is easier to trust when each package owns an explicit boundary and the
-            official website explains how those pieces connect.
+            Each top-level page has a clear job: explain the philosophy, define
+            the project, map the ecosystem, host future writing, and then hand
+            off to docs or support when appropriate.
           </p>
         </div>
 
-        <div class="card-grid card-grid--three">
+        <div class="card-grid card-grid--two">
           <article class="card">
-            <p class="card-kicker">Runtime</p>
-            <h3>@koppajs/koppajs-core</h3>
-            <p>Registers components, runs controller code, and keeps rendering inspectable.</p>
+            <p class="card-kicker">Philosophy</p>
+            <h3>Why it exists</h3>
+            <p>Explain the principles, boundaries, and reasons KoppaJS was built in the first place.</p>
           </article>
           <article class="card">
-            <p class="card-kicker">Build</p>
-            <h3>@koppajs/koppajs-vite-plugin</h3>
-            <p>Turns `.kpa` files into modules without blurring the boundary between build and runtime.</p>
+            <p class="card-kicker">About</p>
+            <h3>What it is</h3>
+            <p>Describe the framework, its intended use, and the direction it may take over time.</p>
           </article>
           <article class="card">
-            <p class="card-kicker">Navigation</p>
-            <h3>@koppajs/koppajs-router</h3>
-            <p>Delivers route matching and active-link state with explicit browser contracts.</p>
+            <p class="card-kicker">Ecosystem</p>
+            <h3>Which packages matter</h3>
+            <p>Present the official packages and repos so users can see how the stack is composed.</p>
+          </article>
+          <article class="card">
+            <p class="card-kicker">Blog</p>
+            <h3>What will be written</h3>
+            <p>Reserve space for KoppaJS articles, package notes, and architectural writing.</p>
           </article>
         </div>
       </div>
@@ -82,48 +89,143 @@
     <section class="section section--contrast">
       <div class="container">
         <div class="section-header">
-          <p class="eyebrow">Philosophy</p>
-          <h2>Opinionated about clarity, not ceremony.</h2>
+          <p class="eyebrow">Deeper surfaces</p>
+          <h2>Docs and support belong one step to the right, not buried in the middle.</h2>
           <p>
-            KoppaJS is designed for people who would rather inspect the system than memorize framework folklore.
+            The website introduces the project. The docs deliver detailed
+            reference. Support makes sponsorship and backing explicit without
+            competing with the primary narrative.
           </p>
         </div>
+        <div class="card-grid card-grid--two">
+          <article class="card card--contrast">
+            <h3>Docs</h3>
+            <p>Embed the full documentation surface when users are ready to go from orientation to detail.</p>
+          </article>
+          <article class="card card--contrast">
+            <h3>Support</h3>
+            <p>Give people a direct way to back the project financially or through deeper ecosystem involvement.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </article>
 
-        <div class="card-grid card-grid--three">
-          <article class="card card--contrast">
-            <h3>Readable runtime contracts</h3>
-            <p>The runtime should be explainable to another engineer without hand-waving.</p>
-          </article>
-          <article class="card card--contrast">
-            <h3>Deliberate scope</h3>
-            <p>Official packages should stay focused instead of becoming a bag of convenience magic.</p>
-          </article>
-          <article class="card card--contrast">
-            <h3>AI-recoverable intent</h3>
-            <p>Repository contracts and architecture notes should survive the absence of tribal knowledge.</p>
-          </article>
+  <article if="locale === 'de'" class="page">
+    <section class="page-hero">
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <p class="eyebrow">Offizielle Website</p>
+          <h1>Schnelle Weboberflächen bauen, ohne sich in versteckter Magie zu verlieren.</h1>
+          <p class="lede">
+            KoppaJS hält die Runtime lesbar, den Router explizit und die Website
+            auf Orientierung fokussiert, bevor jemand überhaupt eine tiefe
+            Referenzseite öffnet.
+          </p>
+          <div class="hero-actions">
+            <a class="button button--primary" data-route="/about" href="/about">
+              Was ist KoppaJS?
+            </a>
+            <a class="button button--ghost" data-route="/ecosystem" href="/ecosystem">
+              Ökosystem ansehen
+            </a>
+          </div>
+        </div>
+
+        <aside class="panel hero-panel reveal delay-1">
+          <p class="panel-kicker">Website-Struktur</p>
+          <ul class="bullet-list">
+            <li>`Start` rahmt das Projekt und seine Oberfläche</li>
+            <li>`Philosophie` erklärt, warum KoppaJS existiert</li>
+            <li>`Über` definiert, wofür das Framework gedacht ist</li>
+            <li>`Ökosystem`, `Blog`, `Docs` und `Support` decken den Rest ab</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section section--tight">
+      <div class="container stat-grid">
+        <div class="stat-card">
+          <span class="stat-value">5</span>
+          <span class="stat-label">primäre Header-Sektionen zur Orientierung</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value">2</span>
+          <span class="stat-label">rechte Schnellzugriffe für Docs und Support</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value">1</span>
+          <span class="stat-label">eingebettete Dokumentationsfläche hinter der Website-Hülle</span>
         </div>
       </div>
     </section>
 
     <section class="section">
-      <div class="container callout">
-        <div>
-          <p class="eyebrow">Support</p>
-          <h2>KoppaJS can only mature if the ecosystem gets real backing.</h2>
+      <div class="container">
+        <div class="section-header">
+          <p class="eyebrow">Orientierung</p>
+          <h2>Die Seite soll helfen, den nächsten sinnvollen Schritt zu sehen.</h2>
           <p>
-            Adoption, issues, example apps, and direct funding all help move the framework from interesting to dependable.
+            Jede Top-Level-Seite hat eine klare Aufgabe: die Philosophie
+            erklären, das Projekt definieren, das Ökosystem abbilden, künftige
+            Texte aufnehmen und dann passend an Docs oder Support übergeben.
           </p>
         </div>
-        <div class="hero-actions">
-          <a class="button button--primary" data-route="/support" href="/support">
-            Open support paths
-          </a>
-          <a class="button button--ghost" href="https://github.com/koppajs" target="_blank" rel="noreferrer">
-            Visit the GitHub org
-          </a>
+
+        <div class="card-grid card-grid--two">
+          <article class="card">
+            <p class="card-kicker">Philosophie</p>
+            <h3>Warum es existiert</h3>
+            <p>Erklärt die Grundsätze, Grenzen und Gründe, aus denen KoppaJS überhaupt gebaut wurde.</p>
+          </article>
+          <article class="card">
+            <p class="card-kicker">Über</p>
+            <h3>Was es ist</h3>
+            <p>Beschreibt das Framework, seinen Einsatzzweck und die Richtung, in die es sich entwickeln könnte.</p>
+          </article>
+          <article class="card">
+            <p class="card-kicker">Ökosystem</p>
+            <h3>Welche Pakete zählen</h3>
+            <p>Stellt die offiziellen Pakete und Repositories vor, damit die Struktur des Stacks sichtbar wird.</p>
+          </article>
+          <article class="card">
+            <p class="card-kicker">Blog</p>
+            <h3>Was hier geschrieben wird</h3>
+            <p>Reserviert Platz für KoppaJS-Artikel, Paket-Notizen und Architekturtexte.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--contrast">
+      <div class="container">
+        <div class="section-header">
+          <p class="eyebrow">Tiefere Flächen</p>
+          <h2>Docs und Support gehören einen Schritt nach rechts, nicht in die Mitte vergraben.</h2>
+          <p>
+            Die Website führt in das Projekt ein. Die Docs liefern die tiefe
+            Referenz. Support macht Sponsoring und Rückendeckung explizit, ohne
+            mit der Hauptnarration zu konkurrieren.
+          </p>
+        </div>
+        <div class="card-grid card-grid--two">
+          <article class="card card--contrast">
+            <h3>Docs</h3>
+            <p>Betten die vollständige Dokumentationsfläche ein, wenn aus Orientierung echte Tiefe werden soll.</p>
+          </article>
+          <article class="card card--contrast">
+            <h3>Support</h3>
+            <p>Geben Menschen einen direkten Weg, das Projekt finanziell oder durch tiefere Beteiligung zu unterstützen.</p>
+          </article>
         </div>
       </div>
     </section>
   </article>
 [/template]
+
+[ts]
+  import { createLocalizedPage } from "./localized-page";
+
+  return createLocalizedPage("");
+[/ts]

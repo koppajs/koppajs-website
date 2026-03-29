@@ -1,0 +1,205 @@
+[template]
+  <article if="locale === 'en'" class="page">
+    <section class="page-hero page-hero--compact">
+      <div class="container page-hero__copy">
+        <p class="eyebrow">About</p>
+        <h1>What KoppaJS is, what it is for, and where it could go next.</h1>
+        <p class="lede">
+          KoppaJS is a small frontend framework built around explicit contracts,
+          readable runtime behavior, and package boundaries that stay clear in
+          code review.
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container card-grid card-grid--two">
+        <article class="card">
+          <p class="card-kicker">What it is</p>
+          <h2>A modular web framework with deliberate scope.</h2>
+          <p>
+            KoppaJS combines `.kpa` single-file components, an explicit runtime,
+            a Vite-based compiler, and an optional router into a stack that is
+            small enough to inspect.
+          </p>
+        </article>
+        <article class="card">
+          <p class="card-kicker">What it is for</p>
+          <h2>Teams that want control over their frontend architecture.</h2>
+          <p>
+            It fits projects where maintainers want clear responsibility
+            boundaries, fewer hidden framework conventions, and a codebase that
+            remains explainable over time.
+          </p>
+        </article>
+        <article class="card">
+          <p class="card-kicker">What it is not</p>
+          <h2>Not a framework that tries to absorb every adjacent concern.</h2>
+          <p>
+            KoppaJS is not trying to become an everything-platform. The official
+            ecosystem should stay focused enough that each package keeps a sharp
+            reason to exist.
+          </p>
+        </article>
+        <article class="card">
+          <p class="card-kicker">Where it may go</p>
+          <h2>More examples, stronger docs, and steadier package contracts.</h2>
+          <p>
+            The likely direction is not maximal feature spread, but better
+            reference apps, stronger onboarding, and clearer package-level
+            expectations across the ecosystem.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section section--contrast">
+      <div class="container">
+        <div class="section-header">
+          <p class="eyebrow">Project direction</p>
+          <h2>The goal is a framework that stays legible as it matures.</h2>
+          <p>
+            Growth only makes sense when it preserves the original value: a
+            system that maintainers can still reason about directly in the repo.
+          </p>
+        </div>
+        <div class="card-grid card-grid--three">
+          <article class="card card--contrast">
+            <h3>Sharper docs</h3>
+            <p>Explain package boundaries, workflows, and tradeoffs without hiding the mechanics.</p>
+          </article>
+          <article class="card card--contrast">
+            <h3>Better examples</h3>
+            <p>Show how real KoppaJS apps are structured, tested, and evolved over time.</p>
+          </article>
+          <article class="card card--contrast">
+            <h3>Stable contracts</h3>
+            <p>Make changes deliberately so adoption can happen without guesswork or folklore.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container callout">
+        <div>
+          <p class="eyebrow">Next</p>
+          <h2>Read the philosophy, inspect the ecosystem, or jump straight into the docs.</h2>
+        </div>
+        <div class="hero-actions">
+          <a class="button button--primary" data-route="/ecosystem" href="/ecosystem">
+            Explore the ecosystem
+          </a>
+          <a class="button button--ghost" data-route="/docs" href="/docs">
+            Open the docs
+          </a>
+        </div>
+      </div>
+    </section>
+  </article>
+
+  <article if="locale === 'de'" class="page">
+    <section class="page-hero page-hero--compact">
+      <div class="container page-hero__copy">
+        <p class="eyebrow">Über</p>
+        <h1>Was KoppaJS ist, wofür es gedacht ist und wohin es sich entwickeln könnte.</h1>
+        <p class="lede">
+          KoppaJS ist ein kleines Frontend-Framework mit expliziten Verträgen,
+          lesbarem Runtime-Verhalten und Paketgrenzen, die auch im Code Review
+          klar bleiben.
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container card-grid card-grid--two">
+        <article class="card">
+          <p class="card-kicker">Was es ist</p>
+          <h2>Ein modulares Web-Framework mit bewusst begrenztem Umfang.</h2>
+          <p>
+            KoppaJS verbindet `.kpa`-Single-File-Components, eine explizite
+            Runtime, einen Vite-basierten Compiler und optional den Router zu
+            einem Stack, der klein genug bleibt, um ihn wirklich zu prüfen.
+          </p>
+        </article>
+        <article class="card">
+          <p class="card-kicker">Wofür es da ist</p>
+          <h2>Für Teams, die Kontrolle über ihre Frontend-Architektur behalten wollen.</h2>
+          <p>
+            Es passt zu Projekten, in denen Maintainer klare Verantwortungsgrenzen,
+            weniger versteckte Framework-Konventionen und eine langfristig
+            erklärbare Codebasis wollen.
+          </p>
+        </article>
+        <article class="card">
+          <p class="card-kicker">Was es nicht ist</p>
+          <h2>Kein Framework, das jedes Nachbarthema einsammeln will.</h2>
+          <p>
+            KoppaJS soll keine Alles-Plattform werden. Das offizielle Ökosystem
+            soll fokussiert genug bleiben, damit jedes Paket einen scharfen
+            Daseinsgrund behält.
+          </p>
+        </article>
+        <article class="card">
+          <p class="card-kicker">Wohin es gehen könnte</p>
+          <h2>Mehr Beispiele, stärkere Docs und stabilere Paket-Verträge.</h2>
+          <p>
+            Die Richtung ist nicht maximale Feature-Breite, sondern bessere
+            Referenz-Apps, klareres Onboarding und präzisere Erwartungen auf
+            Paket-Ebene im gesamten Ökosystem.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section section--contrast">
+      <div class="container">
+        <div class="section-header">
+          <p class="eyebrow">Projektrichtung</p>
+          <h2>Das Ziel ist ein Framework, das auch im Wachstum lesbar bleibt.</h2>
+          <p>
+            Wachstum ergibt nur dann Sinn, wenn der ursprüngliche Wert erhalten
+            bleibt: ein System, das Maintainer direkt im Repository nachvollziehen können.
+          </p>
+        </div>
+        <div class="card-grid card-grid--three">
+          <article class="card card--contrast">
+            <h3>Schärfere Docs</h3>
+            <p>Paketgrenzen, Workflows und Trade-offs erklären, ohne die Mechanik zu verstecken.</p>
+          </article>
+          <article class="card card--contrast">
+            <h3>Bessere Beispiele</h3>
+            <p>Zeigen, wie echte KoppaJS-Apps strukturiert, getestet und weiterentwickelt werden.</p>
+          </article>
+          <article class="card card--contrast">
+            <h3>Stabile Verträge</h3>
+            <p>Änderungen bewusst gestalten, damit Adoption nicht von Vermutungen oder Folklore abhängt.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container callout">
+        <div>
+          <p class="eyebrow">Als Nächstes</p>
+          <h2>Lies die Philosophie, prüfe das Ökosystem oder spring direkt in die Docs.</h2>
+        </div>
+        <div class="hero-actions">
+          <a class="button button--primary" data-route="/ecosystem" href="/ecosystem">
+            Ökosystem ansehen
+          </a>
+          <a class="button button--ghost" data-route="/docs" href="/docs">
+            Docs öffnen
+          </a>
+        </div>
+      </div>
+    </section>
+  </article>
+[/template]
+
+[ts]
+  import { createLocalizedPage } from "./localized-page";
+
+  return createLocalizedPage("");
+[/ts]

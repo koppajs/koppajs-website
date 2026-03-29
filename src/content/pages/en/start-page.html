@@ -1,6 +1,4 @@
-[template]
-  {{ locale === 'de' ? contentDe : '' }}
-  <article if="locale === 'en'" class="page">
+  <article class="page">
     <section class="page-hero page-hero--compact">
       <div class="container page-hero__copy">
         <p class="eyebrow">Start</p>
@@ -75,11 +73,3 @@
       </div>
     </section>
   </article>
-[/template]
-
-[ts]
-  import contentDe from "../content/pages/de/start-page-content";
-  import { createLocalizedPage } from "./localized-page";
-
-  return createLocalizedPage(contentDe);
-[/ts]

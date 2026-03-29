@@ -1,0 +1,65 @@
+  <article class="page">
+    <section class="page-hero page-hero--compact">
+      <div class="container page-hero__copy">
+        <p class="eyebrow">Support</p>
+        <h1>Wenn KoppaJS weiter reifen soll, braucht es aktive Rückendeckung.</h1>
+        <p class="lede">Framework-Ökosysteme werden durch echte Nutzung, hartes Feedback und genug finanzierte Zeit glaubwürdig, um sorgfältig weiterzuliefern.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container support-grid">
+        <article class="card">
+          <p class="card-kicker">Pfad 1</p>
+          <h2>Auf etwas Echtem einsetzen.</h2>
+          <p>Piloten, interne Tools und fokussierte Produktionsflächen liefern das wertvollste Signal.</p>
+        </article>
+        <article class="card">
+          <p class="card-kicker">Pfad 2</p>
+          <h2>Form mitgestalten.</h2>
+          <p>Issue-Reports, Vertragsfeedback, Docs-Arbeit und Beispiele senken die Einstiegshürde für das nächste Team.</p>
+        </article>
+        <article class="card">
+          <p class="card-kicker">Pfad 3</p>
+          <h2>Roadmap-Arbeit finanzieren.</h2>
+          <p>Finanzieller Support erleichtert es, Docs, Beispiele, Tests und stabile Releases im ganzen Ökosystem zu pflegen.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section section--contrast">
+      <div class="container">
+        <div class="section-header">
+          <p class="eyebrow">Was Rückendeckung freischaltet</p>
+          <h2>Die langweilige Arbeit, die ein Framework vertrauenswürdig macht.</h2>
+        </div>
+        <div class="card-grid card-grid--three">
+          <article class="card card--contrast">
+            <h3>Referenz-Apps</h3>
+            <p>Mehr realistische Beispiele auf dem offiziellen Stack.</p>
+          </article>
+          <article class="card card--contrast">
+            <h3>Dokumentationstiefe</h3>
+            <p>Schärfere Paket-Dokumentation, klarere Beispiele und stärkere Onboarding-Narrative.</p>
+          </article>
+          <article class="card card--contrast">
+            <h3>Qualitätsdisziplin</h3>
+            <p>Bessere CI, Browsertests, Release-Checks und explizite Repository-Verträge.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container callout">
+        <div>
+          <p class="eyebrow">Gespräch starten</p>
+          <h2>Öffne die öffentlichen Repos, schärfe die Verträge oder unterstütze die Arbeit direkt über die entstehenden Ökosystem-Kanäle.</h2>
+        </div>
+        <div class="hero-actions">
+          <a class="button button--primary" href="https://github.com/koppajs" target="_blank" rel="noreferrer">GitHub-Organisation besuchen</a>
+          <a class="button button--ghost" data-route="/ecosystem" href="/ecosystem">Ökosystem erneut ansehen</a>
+        </div>
+      </div>
+    </section>
+  </article>

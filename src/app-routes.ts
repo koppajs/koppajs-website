@@ -1,6 +1,10 @@
 import type { RouteDefinition } from "@koppajs/koppajs-router";
+import { createDocumentationRoutes } from "koppajs-documentation/routes";
+import { getKoppaLocale } from "koppajs-documentation/i18n";
 
-import { buildPageTitle, routeCopy } from "./site-config";
+import { buildPageTitle, getRouteCopy } from "./site-config";
+
+const routeCopy = getRouteCopy(getKoppaLocale());
 
 export const appRoutes = [
   {
@@ -11,13 +15,6 @@ export const appRoutes = [
     componentTag: "home-page",
   },
   {
-    path: "/ecosystem",
-    name: "ecosystem",
-    title: buildPageTitle(routeCopy.ecosystem.title),
-    description: routeCopy.ecosystem.description,
-    componentTag: "ecosystem-page",
-  },
-  {
     path: "/philosophy",
     name: "philosophy",
     title: buildPageTitle(routeCopy.philosophy.title),
@@ -25,11 +22,25 @@ export const appRoutes = [
     componentTag: "philosophy-page",
   },
   {
-    path: "/start",
-    name: "start",
-    title: buildPageTitle(routeCopy.start.title),
-    description: routeCopy.start.description,
-    componentTag: "start-page",
+    path: "/about",
+    name: "about",
+    title: buildPageTitle(routeCopy.about.title),
+    description: routeCopy.about.description,
+    componentTag: "about-page",
+  },
+  {
+    path: "/ecosystem",
+    name: "ecosystem",
+    title: buildPageTitle(routeCopy.ecosystem.title),
+    description: routeCopy.ecosystem.description,
+    componentTag: "ecosystem-page",
+  },
+  {
+    path: "/blog",
+    name: "blog",
+    title: buildPageTitle(routeCopy.blog.title),
+    description: routeCopy.blog.description,
+    componentTag: "blog-page",
   },
   {
     path: "/support",
@@ -37,6 +48,26 @@ export const appRoutes = [
     title: buildPageTitle(routeCopy.support.title),
     description: routeCopy.support.description,
     componentTag: "support-page",
+  },
+  ...createDocumentationRoutes({
+    basePath: "/docs",
+    includeFallback: false,
+    locale: getKoppaLocale(),
+    pathStyle: "flat",
+  }),
+  {
+    path: "/datenschutz",
+    name: "privacy",
+    title: buildPageTitle(routeCopy.privacy.title),
+    description: routeCopy.privacy.description,
+    componentTag: "privacy-page",
+  },
+  {
+    path: "/impressum",
+    name: "imprint",
+    title: buildPageTitle(routeCopy.imprint.title),
+    description: routeCopy.imprint.description,
+    componentTag: "imprint-page",
   },
   {
     path: "*",
