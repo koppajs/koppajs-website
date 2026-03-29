@@ -1,0 +1,129 @@
+[template]
+  <article class="page">
+    <section class="page-hero">
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <p class="eyebrow">Official website</p>
+          <h1>Build fast web interfaces without buying into hidden magic.</h1>
+          <p class="lede">
+            KoppaJS keeps the runtime readable, the router explicit, and the build
+            pipeline honest enough to inspect.
+          </p>
+          <div class="hero-actions">
+            <a class="button button--primary" data-route="/start" href="/start">
+              See the adoption path
+            </a>
+            <a class="button button--ghost" data-route="/ecosystem" href="/ecosystem">
+              Explore the ecosystem
+            </a>
+          </div>
+        </div>
+
+        <aside class="panel hero-panel reveal delay-1">
+          <p class="panel-kicker">Signal over hype</p>
+          <ul class="bullet-list">
+            <li>Compile-time `.kpa` components with an explicit runtime</li>
+            <li>No virtual DOM dependency chain in the middle</li>
+            <li>Router contracts that stay visible in code review</li>
+            <li>An ecosystem shaped around one coherent mental model</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section section--tight">
+      <div class="container stat-grid">
+        <div class="stat-card">
+          <span class="stat-value">3</span>
+          <span class="stat-label">core official building blocks presented here</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value">1</span>
+          <span class="stat-label">clear adoption path for new users</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value">0</span>
+          <span class="stat-label">interest in hiding architecture behind vague magic</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <p class="eyebrow">Ecosystem</p>
+          <h2>Small surface, clear roles.</h2>
+          <p>
+            KoppaJS is easier to trust when each package owns an explicit boundary and the
+            official website explains how those pieces connect.
+          </p>
+        </div>
+
+        <div class="card-grid card-grid--three">
+          <article class="card">
+            <p class="card-kicker">Runtime</p>
+            <h3>@koppajs/koppajs-core</h3>
+            <p>Registers components, runs controller code, and keeps rendering inspectable.</p>
+          </article>
+          <article class="card">
+            <p class="card-kicker">Build</p>
+            <h3>@koppajs/koppajs-vite-plugin</h3>
+            <p>Turns `.kpa` files into modules without blurring the boundary between build and runtime.</p>
+          </article>
+          <article class="card">
+            <p class="card-kicker">Navigation</p>
+            <h3>@koppajs/koppajs-router</h3>
+            <p>Delivers route matching and active-link state with explicit browser contracts.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--contrast">
+      <div class="container">
+        <div class="section-header">
+          <p class="eyebrow">Philosophy</p>
+          <h2>Opinionated about clarity, not ceremony.</h2>
+          <p>
+            KoppaJS is designed for people who would rather inspect the system than memorize framework folklore.
+          </p>
+        </div>
+
+        <div class="card-grid card-grid--three">
+          <article class="card card--contrast">
+            <h3>Readable runtime contracts</h3>
+            <p>The runtime should be explainable to another engineer without hand-waving.</p>
+          </article>
+          <article class="card card--contrast">
+            <h3>Deliberate scope</h3>
+            <p>Official packages should stay focused instead of becoming a bag of convenience magic.</p>
+          </article>
+          <article class="card card--contrast">
+            <h3>AI-recoverable intent</h3>
+            <p>Repository contracts and architecture notes should survive the absence of tribal knowledge.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container callout">
+        <div>
+          <p class="eyebrow">Support</p>
+          <h2>KoppaJS can only mature if the ecosystem gets real backing.</h2>
+          <p>
+            Adoption, issues, example apps, and direct funding all help move the framework from interesting to dependable.
+          </p>
+        </div>
+        <div class="hero-actions">
+          <a class="button button--primary" data-route="/support" href="/support">
+            Open support paths
+          </a>
+          <a class="button button--ghost" href="https://github.com/koppajs" target="_blank" rel="noreferrer">
+            Visit the GitHub org
+          </a>
+        </div>
+      </div>
+    </section>
+  </article>
+[/template]

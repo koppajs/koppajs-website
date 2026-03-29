@@ -1,0 +1,55 @@
+{
+  "name": "koppajs-website",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Official marketing website and ecosystem entry point for KoppaJS.",
+  "author": "KoppaJS",
+  "license": "Apache-2.0",
+  "homepage": "https://koppajs.org",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "npm run typecheck && vite build",
+    "preview": "vite preview --host 127.0.0.1 --port 4274 --strictPort",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "typecheck": "tsc --noEmit",
+    "test:unit": "vitest run --coverage",
+    "test:unit:watch": "vitest",
+    "test:e2e": "playwright test tests/e2e",
+    "test:preview": "playwright test --config playwright.preview.config.ts",
+    "test:browser": "npm run test:e2e && npm run test:preview",
+    "test": "npm run test:unit && npm run test:browser",
+    "check:docs": "node scripts/check-doc-contract.mjs",
+    "check": "npm run check:docs && npm run format:check && npm run lint && npm run typecheck && npm run test:unit && npm run build",
+    "validate": "npm run check && npm run test:browser",
+    "prepare": "husky",
+    "check:versions": "node -e \"const pkg=require('./package.json'); if(pkg.engines?.node!=='>=22'){process.exit(1)}\""
+  },
+  "dependencies": {
+    "@koppajs/koppajs-core": "^3.0.7",
+    "@koppajs/koppajs-router": "^0.1.2"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.1",
+    "@koppajs/koppajs-vite-plugin": "^1.0.4",
+    "@playwright/test": "^1.58.2",
+    "@types/node": "^24.10.1",
+    "@typescript-eslint/eslint-plugin": "^8.48.1",
+    "@typescript-eslint/parser": "^8.48.1",
+    "@vitest/coverage-v8": "^4.0.15",
+    "eslint": "^9.39.1",
+    "eslint-config-prettier": "^10.1.8",
+    "globals": "^16.4.0",
+    "husky": "^9.1.7",
+    "jsdom": "^27.4.0",
+    "prettier": "^3.7.3",
+    "typescript": "^5.9.3",
+    "vite": "^7.2.6",
+    "vitest": "^4.0.15"
+  }
+}

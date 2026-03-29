@@ -1,0 +1,65 @@
+[template]
+  <article class="page">
+    <section class="page-hero page-hero--compact">
+      <div class="container page-hero__copy">
+        <p class="eyebrow">Philosophy</p>
+        <h1>KoppaJS is opinionated about clarity, not ceremony.</h1>
+        <p class="lede">
+          The ecosystem should feel intentionally bounded, explainable, and recoverable by both maintainers and collaborators.
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container card-grid card-grid--three">
+        <article class="card">
+          <p class="card-kicker">Principle</p>
+          <h2>Explicit behavior beats hidden convenience.</h2>
+          <p>If the framework does something important, maintainers should be able to point to it in code and docs.</p>
+        </article>
+        <article class="card">
+          <p class="card-kicker">Principle</p>
+          <h2>Readable systems scale better than folklore.</h2>
+          <p>Smaller, sharper contracts beat giant feature surfaces that require social memory to operate safely.</p>
+        </article>
+        <article class="card">
+          <p class="card-kicker">Principle</p>
+          <h2>Deliberate repos make collaboration easier.</h2>
+          <p>Architecture, release rules, and tests belong in the repo so contributors do not have to guess intent.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section section--contrast">
+      <div class="container">
+        <div class="section-header">
+          <p class="eyebrow">Non-goals</p>
+          <h2>What KoppaJS is not trying to become.</h2>
+        </div>
+        <div class="card-grid card-grid--two">
+          <article class="card card--contrast">
+            <h3>Not a framework that wins by becoming everything.</h3>
+            <p>The ecosystem stays healthier when packages keep crisp boundaries instead of absorbing every adjacent concern.</p>
+          </article>
+          <article class="card card--contrast">
+            <h3>Not a website that buries intent under documentation volume.</h3>
+            <p>This repository should create appetite and understanding, then point users to the deeper docs when they are ready.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container callout">
+        <div>
+          <p class="eyebrow">Adoption</p>
+          <h2>Clarity only matters if a new team can actually act on it.</h2>
+        </div>
+        <div class="hero-actions">
+          <a class="button button--primary" data-route="/start" href="/start">See how to start</a>
+          <a class="button button--ghost" data-route="/support" href="/support">See how to support</a>
+        </div>
+      </div>
+    </section>
+  </article>
+[/template]

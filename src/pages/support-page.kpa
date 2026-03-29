@@ -1,0 +1,73 @@
+[template]
+  <article class="page">
+    <section class="page-hero page-hero--compact">
+      <div class="container page-hero__copy">
+        <p class="eyebrow">Support</p>
+        <h1>If KoppaJS should keep maturing, it needs active backing.</h1>
+        <p class="lede">
+          Framework ecosystems become credible through real use, hard feedback, and enough funded time to keep shipping carefully.
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container support-grid">
+        <article class="card">
+          <p class="card-kicker">Lane 1</p>
+          <h2>Use it on something real.</h2>
+          <p>Pilots, internal tools, and focused production surfaces generate the most valuable signal.</p>
+        </article>
+        <article class="card">
+          <p class="card-kicker">Lane 2</p>
+          <h2>Contribute shape.</h2>
+          <p>Issue reports, contract feedback, docs work, and examples reduce adoption friction for the next team.</p>
+        </article>
+        <article class="card">
+          <p class="card-kicker">Lane 3</p>
+          <h2>Fund roadmap work.</h2>
+          <p>Financial support makes it easier to maintain docs, examples, testing, and steady releases across the ecosystem.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section section--contrast">
+      <div class="container">
+        <div class="section-header">
+          <p class="eyebrow">What backing unlocks</p>
+          <h2>The boring work that makes a framework trustworthy.</h2>
+        </div>
+        <div class="card-grid card-grid--three">
+          <article class="card card--contrast">
+            <h3>Reference apps</h3>
+            <p>More real-world examples built on the official stack.</p>
+          </article>
+          <article class="card card--contrast">
+            <h3>Documentation depth</h3>
+            <p>Sharper package docs, clearer examples, and stronger onboarding narratives.</p>
+          </article>
+          <article class="card card--contrast">
+            <h3>Quality discipline</h3>
+            <p>Better CI, browser tests, release checks, and explicit repository contracts.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container callout">
+        <div>
+          <p class="eyebrow">Start the conversation</p>
+          <h2>Open the public repos, shape the contracts, or back the work directly through the ecosystem channels that emerge next.</h2>
+        </div>
+        <div class="hero-actions">
+          <a class="button button--primary" href="https://github.com/koppajs" target="_blank" rel="noreferrer">
+            Visit the GitHub org
+          </a>
+          <a class="button button--ghost" data-route="/ecosystem" href="/ecosystem">
+            Revisit the ecosystem
+          </a>
+        </div>
+      </div>
+    </section>
+  </article>
+[/template]

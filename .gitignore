@@ -1,0 +1,9 @@
+node_modules/
+.husky/_/
+.DS_Store
+dist/
+coverage/
+playwright-report/
+test-results/
+.vite/
+.vite-temp/

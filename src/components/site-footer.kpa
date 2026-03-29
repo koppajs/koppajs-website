@@ -1,0 +1,71 @@
+[template]
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <section class="footer-block footer-block--brand" aria-label="KoppaJS closing statement">
+        <p class="eyebrow">KoppaJS</p>
+        <h2>Built for teams that want clarity they can maintain.</h2>
+        <p class="footer-copy">
+          The official site exists to position the ecosystem, point to the right package
+          repos, and make support for the framework explicit.
+        </p>
+        <div class="footer-actions">
+          <a class="button button--primary button--small" data-route="/start" href="/start">
+            Start with KoppaJS
+          </a>
+          <a class="button button--ghost button--small" data-route="/support" href="/support">
+            Support the ecosystem
+          </a>
+        </div>
+      </section>
+
+      <section class="footer-block" aria-label="Internal navigation">
+        <h3>Navigate</h3>
+        <ul class="footer-links">
+          <li><a data-route="/" href="/">Home</a></li>
+          <li><a data-route="/ecosystem" href="/ecosystem">Ecosystem</a></li>
+          <li><a data-route="/philosophy" href="/philosophy">Philosophy</a></li>
+          <li><a data-route="/start" href="/start">Start</a></li>
+          <li><a data-route="/support" href="/support">Support</a></li>
+        </ul>
+      </section>
+
+      <section class="footer-block" aria-label="Official packages">
+        <h3>Official packages</h3>
+        <ul class="footer-links">
+          <li>
+            <a href="https://github.com/koppajs/koppajs-core" target="_blank" rel="noreferrer">
+              @koppajs/koppajs-core
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://github.com/koppajs/koppajs-vite-plugin"
+              target="_blank"
+              rel="noreferrer"
+            >
+              @koppajs/koppajs-vite-plugin
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/koppajs/koppajs-router" target="_blank" rel="noreferrer">
+              @koppajs/koppajs-router
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/koppajs/create-koppajs" target="_blank" rel="noreferrer">
+              create-koppajs
+            </a>
+          </li>
+        </ul>
+      </section>
+
+      <section class="footer-block" aria-label="Support note">
+        <h3>What support funds</h3>
+        <p class="footer-copy">
+          Reference apps, docs, examples, tests, and the steady release discipline that
+          makes a small ecosystem trustworthy.
+        </p>
+      </section>
+    </div>
+  </footer>
+[/template]

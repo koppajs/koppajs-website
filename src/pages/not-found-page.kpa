@@ -1,0 +1,17 @@
+[template]
+  <article class="page">
+    <section class="page-hero page-hero--compact">
+      <div class="container page-hero__copy">
+        <p class="eyebrow">Not found</p>
+        <h1>This route is not part of the KoppaJS website.</h1>
+        <p class="lede">
+          The official site keeps its public surface intentionally small. Start from the homepage or explore the ecosystem pages.
+        </p>
+        <div class="hero-actions">
+          <a class="button button--primary" data-route="/" href="/">Go to home</a>
+          <a class="button button--ghost" data-route="/ecosystem" href="/ecosystem">Browse the ecosystem</a>
+        </div>
+      </div>
+    </section>
+  </article>
+[/template]

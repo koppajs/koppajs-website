@@ -1,0 +1,32 @@
+[template]
+  <header class="site-header">
+    <div class="container site-header__bar">
+      <a class="brand-mark" data-route="/" href="/" aria-label="KoppaJS home">
+        <span class="brand-mark__badge">KoppaJS</span>
+        <span class="brand-mark__caption">explicit frontend architecture</span>
+      </a>
+
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a data-route="/" href="/" class="nav-link">Home</a>
+        <a data-route="/ecosystem" href="/ecosystem" class="nav-link">Ecosystem</a>
+        <a data-route="/philosophy" href="/philosophy" class="nav-link">Philosophy</a>
+        <a data-route="/start" href="/start" class="nav-link">Start</a>
+        <a data-route="/support" href="/support" class="nav-link">Support</a>
+      </nav>
+
+      <div class="site-header__actions">
+        <a
+          class="minor-link"
+          href="https://github.com/koppajs/koppajs-documentation"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Docs
+        </a>
+        <a class="button button--small button--ink" data-route="/support" href="/support">
+          Support
+        </a>
+      </div>
+    </div>
+  </header>
+[/template]

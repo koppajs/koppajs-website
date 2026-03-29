@@ -32,8 +32,6 @@
     &middot;
     <a href="https://github.com/koppajs/koppajs-vite-plugin">Vite Plugin</a>
     &middot;
-    <a href="https://github.com/koppajs/koppajs-router">Router</a>
-    &middot;
     <a href="https://github.com/koppajs/koppajs-website/issues">Issues</a>
   </p>
 </div>
@@ -44,9 +42,13 @@
 <summary>Table of Contents</summary>
   <ol>
     <li><a href="#what-is-this-repository">What is this repository?</a></li>
-    <li><a href="#scope">Scope</a></li>
+    <li><a href="#site-experience">Site Experience</a></li>
+    <li><a href="#stack">Stack</a></li>
+    <li><a href="#route-map">Route Map</a></li>
+    <li><a href="#local-development">Local Development</a></li>
     <li><a href="#current-status">Current Status</a></li>
-    <li><a href="#community--contribution">Community & Contribution</a></li>
+    <li><a href="#architecture-governance">Architecture & Governance</a></li>
+    <li><a href="#community-contribution">Community & Contribution</a></li>
     <li><a href="#license">License</a></li>
   </ol>
 </details>
@@ -57,35 +59,129 @@
 
 `koppajs-website` is the official website repository for the KoppaJS project.
 
-It exists as the home for the public-facing web presence around the framework
-and its ecosystem. That includes package discovery, high-level explanation, and
-the public entry point that complements the package-level READMEs.
+It exists as the public-facing web presence for the framework, its official
+ecosystem packages, and the philosophy behind the project.
 
 ---
 
-## Scope
+## Site Experience
 
-This repository is intended to hold:
+The website is intentionally **marketing-first** rather than documentation-first.
 
-- the main website for KoppaJS
-- public ecosystem entry points and overview pages
-- framework-level positioning and discovery content
-- site-specific implementation that should not live inside the package repos
+It is responsible for:
+
+- explaining why KoppaJS exists and what kind of teams it fits
+- presenting the official ecosystem around core, router, and the Vite plugin
+- creating a clear entry path for new users without duplicating full docs
+- making support, contribution, and funding conversations explicit
+
+Detailed package documentation remains owned by the package repos and the
+dedicated documentation repository.
+
+---
+
+## Stack
+
+The site uses the same ecosystem it promotes:
+
+- `@koppajs/koppajs-core` for component registration and runtime behavior
+- `@koppajs/koppajs-router` for SPA routing and active-link state
+- `@koppajs/koppajs-vite-plugin` to compile `.kpa` component files
+- Vite for local development and production builds
+- Vitest for repository-local unit coverage
+- Playwright for browser navigation and built-preview verification
+
+Local requirements:
+
+- Node.js >= 22
+- npm >= 10
+
+---
+
+## Route Map
+
+The current `0.1.0` route baseline includes:
+
+- `/` for the main positioning and ecosystem overview
+- `/ecosystem` for the official package landscape
+- `/philosophy` for the framework principles and non-goals
+- `/start` for onboarding and adoption guidance
+- `/support` for contribution and funding paths
+- `*` for a dedicated not-found experience
+
+---
+
+## Local Development
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Start the local site:
+
+```bash
+npm run dev
+```
+
+Run the main quality gate:
+
+```bash
+npm run check
+```
+
+Run browser coverage:
+
+```bash
+npx playwright install chromium
+npm run test:browser
+```
 
 ---
 
 ## Current Status
 
-The repository is currently intentionally minimal.
-It already serves as the canonical website home in the ecosystem map, and it can
-grow incrementally as the public web presence is built out.
+`0.1.0` establishes the first public website baseline for KoppaJS:
 
-That public ecosystem map now includes the released `create-koppajs` starter
-entry point and the published `@koppajs/koppajs-router` package alongside the
-existing core surfaces.
+- a marketing-oriented SPA built with KoppaJS itself
+- official package positioning for core, router, and the Vite plugin
+- explicit support and funding messaging for the ecosystem
+- local unit and browser test coverage plus CI validation on Node 22 and 24
 
-Until that site surface is expanded, package READMEs and their local docs remain
-the best source for package-specific implementation and release details.
+The dedicated documentation repo remains the right place for deep reference
+material, while this repository owns positioning, discovery, and the public
+entry narrative.
+
+The site is intentionally still **pre-1.0**. Content depth, package storytelling,
+and support surfaces still have room to mature before a `1.0.0` claim would be
+credible.
+
+---
+
+## Architecture & Governance
+
+Project intent, contributor rules, and documentation contracts live in the local repo meta layer:
+
+- [DECISION_HIERARCHY.md](./DECISION_HIERARCHY.md)
+- [ARCHITECTURE.md](./ARCHITECTURE.md)
+- [DEVELOPMENT_RULES.md](./DEVELOPMENT_RULES.md)
+- [TESTING_STRATEGY.md](./TESTING_STRATEGY.md)
+- [RELEASE.md](./RELEASE.md)
+- [CHANGELOG.md](./CHANGELOG.md)
+- [CONTRIBUTING.md](./CONTRIBUTING.md)
+- [CODE_OF_CONDUCT.md](./CODE_OF_CONDUCT.md)
+- [docs/specs/README.md](./docs/specs/README.md)
+- [docs/specs/repository-documentation-contract.md](./docs/specs/repository-documentation-contract.md)
+- [docs/specs/site-runtime-baseline.md](./docs/specs/site-runtime-baseline.md)
+
+The file-shape contract for `README.md`, `CHANGELOG.md`, `CODE_OF_CONDUCT.md`, and `CONTRIBUTING.md` is defined in [docs/specs/repository-documentation-contract.md](./docs/specs/repository-documentation-contract.md).
+
+Run the local document guard before committing:
+
+```bash
+npm run check:docs
+```
 
 ---
 
@@ -94,6 +190,11 @@ the best source for package-specific implementation and release details.
 Issues and pull requests are welcome:
 
 https://github.com/koppajs/koppajs-website/issues
+
+Contributor workflow details live in [CONTRIBUTING.md](./CONTRIBUTING.md), and
+release expectations live in [RELEASE.md](./RELEASE.md).
+
+Community expectations live in [CODE_OF_CONDUCT.md](./CODE_OF_CONDUCT.md).
 
 ---
 
