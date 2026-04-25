@@ -14,6 +14,15 @@ export default defineConfig({
   resolve: {
     dedupe: ["@koppajs/koppajs-core", "@koppajs/koppajs-router"],
   },
+  optimizeDeps: {
+    exclude: [
+      "koppajs-documentation",
+      "koppajs-documentation/code-blocks",
+      "koppajs-documentation/ecosystem",
+      "koppajs-documentation/integration",
+      "koppajs-documentation/routes",
+    ],
+  },
   plugins: [
     koppaPlugin({
       tsconfigFile: "./tsconfig.json",
