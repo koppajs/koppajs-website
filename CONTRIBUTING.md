@@ -162,21 +162,23 @@ That means:
 
 ## Scripts
 
-| Command                | Description                                                                              |
-| ---------------------- | ---------------------------------------------------------------------------------------- |
-| `npm run dev`          | Start the local Vite development server                                                  |
-| `npm run build`        | Run TypeScript checks and produce the production build                                   |
-| `npm run preview`      | Serve the production build locally                                                       |
-| `npm run lint`         | Run ESLint across source, tests, and tooling                                             |
-| `npm run format:check` | Verify Prettier formatting                                                               |
-| `npm run typecheck`    | Run the TypeScript project check without emitting output                                 |
-| `npm run test:unit`    | Run Vitest unit coverage                                                                 |
-| `npm run test:e2e`     | Run Playwright navigation coverage against the dev server                                |
-| `npm run test:preview` | Run Playwright coverage against the built preview server                                 |
-| `npm run test:browser` | Run both Playwright browser suites                                                       |
-| `npm run check:docs`   | Validate README, CHANGELOG, CODE_OF_CONDUCT, CONTRIBUTING, and the local doc contract    |
-| `npm run check`        | Run the main local quality gate for docs, formatting, lint, types, unit tests, and build |
-| `npm run validate`     | Run the full local validation including browser tests                                    |
+| Command                  | Description                                                                              |
+| ------------------------ | ---------------------------------------------------------------------------------------- |
+| `npm run dev`            | Start the local Vite development server                                                  |
+| `npm run build`          | Run TypeScript checks and produce the production build                                   |
+| `npm run preview`        | Serve the production build locally                                                       |
+| `npm run lint`           | Run ESLint across source, tests, and tooling                                             |
+| `npm run format:check`   | Verify Prettier formatting                                                               |
+| `npm run typecheck`      | Run the TypeScript project check without emitting output                                 |
+| `npm run test:unit`      | Run Vitest unit coverage                                                                 |
+| `npm run test:e2e`       | Run Playwright navigation coverage against the dev server                                |
+| `npm run test:preview`   | Run Playwright coverage against the built preview server                                 |
+| `npm run test:browser`   | Run both Playwright browser suites                                                       |
+| `npm run check:docs`     | Validate README, CHANGELOG, CODE_OF_CONDUCT, CONTRIBUTING, and the local doc contract    |
+| `npm run check`          | Run the main local quality gate for docs, formatting, lint, types, unit tests, and build |
+| `npm run validate`       | Run the full local validation including browser tests                                    |
+| `npm run release:check`  | Run validation plus release readiness checks                                             |
+| `npm run deploy:prepare` | Copy `src/.htaccess` into the built `dist/` deploy artifact                              |
 
 <p align="right">(<a href="#contributing-top">back to top</a>)</p>
 

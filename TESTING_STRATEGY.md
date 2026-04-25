@@ -51,8 +51,15 @@ Use Playwright for:
 The repository quality gates currently include:
 
 - `npm run check`
+- `npm run release:check`
 - `npm run test:e2e`
 - `npm run test:preview`
+- `npm run deploy:prepare` after a production build when release/deploy
+  behavior changes
 
 CI runs the main quality gate on Node 22 and 24, then runs browser coverage on
 Node 22.
+
+Tagged releases run the full release gate, build with `VITE_BASE_PATH=/`, copy
+the fixed `src/.htaccess` file into `dist/.htaccess`, and deploy the built
+artifact through the production FTP secrets.

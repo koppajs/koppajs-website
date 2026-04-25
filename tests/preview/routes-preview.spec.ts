@@ -1,22 +1,24 @@
 import { expect, test } from "@playwright/test";
 
 test.describe("preview routes", () => {
-  test("loads a deep link through vite preview", async ({ page }) => {
-    await page.goto("/philosophy");
+  test("loads a deep website route through vite preview", async ({ page }) => {
+    await page.goto("/architecture");
 
     await expect(
       page.getByRole("heading", {
-        name: "KoppaJS is opinionated about clarity, not ceremony.",
+        name: "The system stays calm because each layer owns a specific concern.",
       }),
     ).toBeVisible();
   });
 
-  test("keeps the not-found route working in preview", async ({ page }) => {
-    await page.goto("/preview-missing");
+  test("keeps embedded docs deep links working in preview", async ({
+    page,
+  }) => {
+    await page.goto("/docs/core-concepts/lifecycle");
 
     await expect(
       page.getByRole("heading", {
-        name: "This route is not part of the KoppaJS website.",
+        name: "Lifecycle hooks are useful because their order is predictable.",
       }),
     ).toBeVisible();
   });

@@ -100,13 +100,17 @@ Local requirements:
 
 ## Route Map
 
-The current `0.1.0` route baseline includes:
+The current route baseline includes:
 
-- `/` for the main positioning and ecosystem overview
+- `/` for the main product, architecture, and package overview
+- `/learn` for structured entry paths into the documentation system
+- `/architecture` for the website/docs boundary and system ownership map
 - `/ecosystem` for the official package landscape
-- `/philosophy` for the framework principles and non-goals
-- `/start` for onboarding and adoption guidance
+- `/showcase` for realistic application categories and fit
+- `/about` for project intent and non-goals
 - `/support` for contribution and funding paths
+- `/docs/*` for the embedded documentation application
+- `/impressum` and `/datenschutz` for the current legal and privacy surfaces
 - `*` for a dedicated not-found experience
 
 ---
@@ -142,20 +146,16 @@ npm run test:browser
 
 ## Current Status
 
-`0.1.0` establishes the first public website baseline for KoppaJS:
+The website now serves as the public product surface for KoppaJS:
 
-- a marketing-oriented SPA built with KoppaJS itself
-- official package positioning for core, router, and the Vite plugin
-- explicit support and funding messaging for the ecosystem
+- a routed KoppaJS application with a dark-first design system shared with the documentation package
+- a complete public route structure for product framing, architecture, ecosystem, showcase, support, and legal pages
+- embedded documentation mounted through the exported documentation contract instead of website-owned reimplementation
 - local unit and browser test coverage plus CI validation on Node 22 and 24
 
 The dedicated documentation repo remains the right place for deep reference
 material, while this repository owns positioning, discovery, and the public
 entry narrative.
-
-The site is intentionally still **pre-1.0**. Content depth, package storytelling,
-and support surfaces still have room to mature before a `1.0.0` claim would be
-credible.
 
 ---
 

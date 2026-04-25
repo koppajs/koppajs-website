@@ -1,6 +1,4 @@
 [template]
-  <div class="site-backdrop" aria-hidden="true"></div>
-  <div class="site-backdrop site-backdrop--secondary" aria-hidden="true"></div>
   <div class="site-shell">
     <site-header></site-header>
     <main id="app-outlet" class="site-outlet" tabindex="-1"></main>

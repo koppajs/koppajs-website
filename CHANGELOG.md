@@ -21,7 +21,7 @@ Changes will only appear here when they:
 
 ---
 
-## [0.1.0] - Initial Website Baseline
+## [0.0.1] - Initial Website Baseline
 
 **2026-03-28**
 
@@ -44,7 +44,7 @@ behavior.
 - Raised the repository Node.js minimum to `>=22`, kept `.nvmrc` on `22` as
   the maintainer default, and expanded CI checks to Node 22 and 24
 - Upgraded the repository from a meta-layer-only placeholder to a working
-  `0.1.0` application baseline with build, lint, typecheck, test, and preview
+  `0.0.1` application baseline with build, lint, typecheck, test, and preview
   workflows
 
 ---

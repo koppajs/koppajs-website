@@ -1,0 +1,145 @@
+[template]
+  <article class="site-page">
+    <section class="site-page__hero">
+      <div class="koppa-container site-page__hero-copy">
+        <p class="koppa-eyebrow">Learn</p>
+        <h1 class="site-page__title">A structured path into the KoppaJS documentation system.</h1>
+        <p class="site-page__lead">
+          The website should not duplicate the docs. It should help you enter the
+          docs from the right place and understand which path to follow next.
+        </p>
+      </div>
+    </section>
+
+    <section class="site-page__section">
+      <div class="koppa-container koppa-grid koppa-grid--3">
+        <article loop="item in startPaths" class="koppa-card koppa-card--quiet">
+          <p class="koppa-eyebrow">{{ item.kicker }}</p>
+          <h2>{{ item.title }}</h2>
+          <p class="koppa-text-muted">{{ item.body }}</p>
+          <a class="koppa-link" :href="item.href" :data-route="item.href">{{ item.linkLabel }}</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="site-page__section">
+      <div class="koppa-container koppa-stack">
+        <div class="home-section__header">
+          <p class="koppa-eyebrow">Documentation Areas</p>
+          <h2 class="home-section__title">The documentation is structured by responsibility, not by blog-style chronology.</h2>
+          <p class="koppa-text-muted">
+            Each top-level area explains one part of the system so you can move
+            from orientation into reference without losing the architectural
+            thread.
+          </p>
+        </div>
+
+        <div class="koppa-grid koppa-grid--3">
+          <article loop="item in docsAreas" class="koppa-card koppa-card--quiet">
+            <p class="koppa-eyebrow">{{ item.kicker }}</p>
+            <h2>{{ item.title }}</h2>
+            <p class="koppa-text-muted">{{ item.body }}</p>
+            <a class="koppa-link" :href="item.href" :data-route="item.href">{{ item.linkLabel }}</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="site-page__section">
+      <div class="koppa-container site-learn__grid">
+        <div class="koppa-card">
+          <p class="koppa-eyebrow">Documentation Structure</p>
+          <h2>Use the exported docs navigation instead of a website-only summary.</h2>
+          <div class="site-learn__nav-tree">
+            <div loop="item in docsItems" class="site-learn__nav-group">
+              <a class="site-learn__nav-link" :href="item.href" :data-route="item.href">
+                {{ item.label }}
+              </a>
+              <div if="item.children.length" class="site-learn__nav-children">
+                <a
+                  loop="child in item.children"
+                  class="site-learn__nav-child"
+                  :href="child.href"
+                  :data-route="child.href"
+                >
+                  {{ child.label }}
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="koppa-stack">
+          <aside class="koppa-card koppa-card--quiet">
+            <p class="koppa-eyebrow">Reading Order</p>
+            <ol class="koppa-list">
+              <li>Open installation or manual setup if you are evaluating the runtime from scratch.</li>
+              <li>Read core concepts before deciding how much routing or package layering you need.</li>
+              <li>Use routing, tooling, API, and packages once the mental model is stable.</li>
+              <li>Return to architecture and migration when the app boundary becomes long-lived.</li>
+            </ol>
+          </aside>
+
+          <aside class="koppa-card koppa-card--quiet">
+            <p class="koppa-eyebrow">Website And Docs</p>
+            <ul class="koppa-list">
+              <li>The website frames the product and helps you choose the right entry path.</li>
+              <li>The documentation package owns the canonical docs routes, metadata, and navigation tree.</li>
+              <li>The same contract powers the standalone docs app and the embedded /docs surface.</li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </article>
+[/template]
+
+[ts]
+  import {
+    getDocumentationNavigationItems,
+    getDocumentationRouteMap,
+  } from "koppajs-documentation/routes";
+
+  return {
+    state: {
+      docsItems: [],
+      docsAreas: [],
+      startPaths: [],
+    },
+    created() {
+      const routeMap = getDocumentationRouteMap();
+
+      this.docsItems = getDocumentationNavigationItems();
+      this.docsAreas = this.docsItems.map((item) => ({
+        kicker: `${item.children.length} child page${item.children.length === 1 ? "" : "s"}`,
+        title: item.label,
+        body: item.description,
+        href: item.children[0]?.href ?? item.href,
+        linkLabel: item.children.length ? "Open section" : "Open page",
+      }));
+      this.startPaths = [
+        {
+          kicker: "Start in 15 minutes",
+          title: "Installation and first component",
+          body: "Get the supported baseline running and render a real component before adding more surface area.",
+          href: routeMap["/getting-started/installation"] ?? "/docs/getting-started/installation",
+          linkLabel: "Open installation",
+        },
+        {
+          kicker: "Understand architecture",
+          title: "Architecture and package boundaries",
+          body: "Read how runtime, router, tooling, website shell, and docs integration are split.",
+          href: routeMap["/architecture"] ?? "/docs/architecture",
+          linkLabel: "Open architecture",
+        },
+        {
+          kicker: "Build a real app",
+          title: "Routing, examples, and migration",
+          body: "Use the examples and migration sections once you are moving past the first component.",
+          href: routeMap["/examples"] ?? "/docs/examples",
+          linkLabel: "Open examples",
+        },
+      ];
+    },
+  };
+[/ts]

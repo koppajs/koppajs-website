@@ -1,33 +1,17 @@
 [template]
-  <article if="locale === 'en'" class="page">
-    <section class="page-hero page-hero--compact">
-      <div class="container page-hero__copy">
-        <p class="eyebrow">Not found</p>
-        <h1>This route is not part of the KoppaJS website.</h1>
-        <p class="lede">
-          The page you asked for does not exist in the current website structure.
-          Go back to the homepage, inspect the ecosystem, or open the docs.
+  <article class="site-page">
+    <section class="site-page__hero">
+      <div class="koppa-container site-page__hero-copy">
+        <p class="koppa-eyebrow">Not Found</p>
+        <h1 class="site-page__title">This route is not part of the KoppaJS website.</h1>
+        <p class="site-page__lead">
+          Return to the homepage, open the learning path, or move directly into the
+          documentation system.
         </p>
-        <div class="hero-actions">
-          <a class="button button--primary" data-route="/" href="/">Go to home</a>
-          <a class="button button--ghost" data-route="/docs" href="/docs">Open docs</a>
-        </div>
-      </div>
-    </section>
-  </article>
 
-  <article if="locale === 'de'" class="page">
-    <section class="page-hero page-hero--compact">
-      <div class="container page-hero__copy">
-        <p class="eyebrow">Nicht gefunden</p>
-        <h1>Diese Route ist nicht Teil der KoppaJS-Website.</h1>
-        <p class="lede">
-          Die angefragte Seite existiert in der aktuellen Website-Struktur nicht.
-          Gehe zurück zur Startseite, prüfe das Ökosystem oder öffne die Docs.
-        </p>
-        <div class="hero-actions">
-          <a class="button button--primary" data-route="/" href="/">Zur Startseite</a>
-          <a class="button button--ghost" data-route="/docs" href="/docs">Docs öffnen</a>
+        <div class="site-page__actions">
+          <a class="koppa-button koppa-button--primary" href="/" data-route="/">Go to home</a>
+          <a class="koppa-button" :href="docsHref" :data-route="docsHref">Open docs</a>
         </div>
       </div>
     </section>
@@ -35,7 +19,14 @@
 [/template]
 
 [ts]
-  import { createLocalizedPage } from "./localized-page";
+  import { getDocumentationRouteMap } from "koppajs-documentation/routes";
 
-  return createLocalizedPage("");
+  return {
+    state: {
+      docsHref: "/docs",
+    },
+    created() {
+      this.docsHref = getDocumentationRouteMap()["/"] ?? "/docs";
+    },
+  };
 [/ts]

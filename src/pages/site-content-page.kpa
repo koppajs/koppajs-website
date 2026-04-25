@@ -1,0 +1,86 @@
+[template]
+  <article class="site-page">
+    <section class="site-page__hero">
+      <div class="koppa-container site-page__hero-copy">
+        <p class="koppa-eyebrow">{{ page.eyebrow }}</p>
+        <h1 class="site-page__title">{{ page.headline }}</h1>
+        <p class="site-page__lead">{{ page.lead }}</p>
+
+        <div if="actionItems.length" class="site-page__actions">
+          <a
+            loop="action in actionItems"
+            class="koppa-button {{ action.variant === 'primary' ? 'koppa-button--primary' : '' }}"
+            :href="action.href"
+            :data-route="action.dataRoute"
+            :target="action.target"
+            :rel="action.rel"
+          >
+            {{ action.label }}
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="site-page__body">
+      <div class="koppa-container koppa-prose koppa-stack">
+        {{ page.bodyHtml }}
+      </div>
+    </section>
+  </article>
+[/template]
+
+[ts]
+  import { installCodeBlockCopyButtons } from "koppajs-documentation/code-blocks";
+  import { getDocumentationRouteMap } from "koppajs-documentation/routes";
+
+  import { sitePageMap } from "../site-content";
+
+  const resolvePage = () => {
+    const page = sitePageMap.get(window.location.pathname);
+
+    if (!page) {
+      throw new Error(`Unknown site page for path ${window.location.pathname}.`);
+    }
+
+    return page;
+  };
+
+  return {
+    state: {
+      page: {
+        eyebrow: "",
+        headline: "",
+        lead: "",
+        bodyHtml: "",
+      },
+      actionItems: [],
+    },
+    methods: {
+      syncPage() {
+        const page = resolvePage();
+        const docsRouteMap = getDocumentationRouteMap();
+
+        this.page = page;
+        this.actionItems = (page.actions ?? []).map((action) => {
+          const href = action.isDocsPath
+            ? docsRouteMap[action.path] ?? action.path
+            : action.path;
+
+          return {
+            ...action,
+            href,
+            dataRoute: href.startsWith("http") ? null : href,
+            target: href.startsWith("http") ? "_blank" : null,
+            rel: href.startsWith("http") ? "noreferrer" : null,
+          };
+        });
+      },
+    },
+    created() {
+      this.syncPage();
+    },
+    mounted() {
+      installCodeBlockCopyButtons(this.element);
+    },
+  };
+[/ts]

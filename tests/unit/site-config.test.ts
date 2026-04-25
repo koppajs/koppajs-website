@@ -1,30 +1,41 @@
 import { describe, expect, it } from "vitest";
 
 import {
+  primaryNavigation,
   buildPageTitle,
-  ecosystemPackages,
   siteMeta,
-  supportLanes,
 } from "../../src/site-config";
+import {
+  aboutStatements,
+  learningPaths,
+  whyKoppaCards,
+} from "../../src/site-content";
 
 describe("site-config", () => {
   it("builds branded page titles", () => {
-    expect(buildPageTitle("Support")).toBe(`${siteMeta.brand} · Support`);
-  });
-
-  it("promotes the key official ecosystem packages", () => {
-    expect(ecosystemPackages.map((item) => item.name)).toEqual(
-      expect.arrayContaining([
-        "@koppajs/koppajs-core",
-        "@koppajs/koppajs-vite-plugin",
-        "@koppajs/koppajs-router",
-      ]),
+    expect(buildPageTitle("Architecture")).toBe(
+      `${siteMeta.brand} · Architecture`,
     );
   });
 
-  it("keeps support lanes distinct", () => {
-    expect(new Set(supportLanes.map((lane) => lane.title)).size).toBe(
-      supportLanes.length,
+  it("keeps the top navigation aligned with the required 1.0 structure", () => {
+    expect(primaryNavigation.map((item) => item.label)).toEqual([
+      "Docs",
+      "Architecture",
+      "Ecosystem",
+      "Showcase",
+      "About",
+      "Get Started",
+    ]);
+  });
+
+  it("keeps the homepage explanation cards and learning paths distinct", () => {
+    expect(new Set(whyKoppaCards.map((item) => item.title)).size).toBe(
+      whyKoppaCards.length,
     );
+    expect(new Set(learningPaths.map((item) => item.title)).size).toBe(
+      learningPaths.length,
+    );
+    expect(aboutStatements.length).toBeGreaterThan(1);
   });
 });

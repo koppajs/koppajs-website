@@ -1,79 +1,49 @@
 import type { RouteDefinition } from "@koppajs/koppajs-router";
 import { createDocumentationRoutes } from "koppajs-documentation/routes";
-import { getKoppaLocale } from "koppajs-documentation/i18n";
 
-import { buildPageTitle, getRouteCopy } from "./site-config";
+import { getSiteRouteMeta } from "./site-config";
 
-const routeCopy = getRouteCopy(getKoppaLocale());
+const orderedSitePages = [
+  "/architecture",
+  "/ecosystem",
+  "/showcase",
+  "/about",
+  "/support",
+] as const;
+
+const legalSitePages = ["/impressum", "/datenschutz"] as const;
+
+const createSitePageRoute = (path: string) => ({
+  path,
+  name: path.slice(1).replaceAll("/", "-"),
+  ...getSiteRouteMeta(path),
+  componentTag: "site-content-page",
+});
 
 export const appRoutes = [
   {
     path: "/",
     name: "home",
-    title: buildPageTitle(routeCopy.home.title),
-    description: routeCopy.home.description,
+    ...getSiteRouteMeta("/"),
     componentTag: "home-page",
   },
   {
-    path: "/philosophy",
-    name: "philosophy",
-    title: buildPageTitle(routeCopy.philosophy.title),
-    description: routeCopy.philosophy.description,
-    componentTag: "philosophy-page",
+    path: "/learn",
+    name: "learn",
+    ...getSiteRouteMeta("/learn"),
+    componentTag: "learn-page",
   },
-  {
-    path: "/about",
-    name: "about",
-    title: buildPageTitle(routeCopy.about.title),
-    description: routeCopy.about.description,
-    componentTag: "about-page",
-  },
-  {
-    path: "/ecosystem",
-    name: "ecosystem",
-    title: buildPageTitle(routeCopy.ecosystem.title),
-    description: routeCopy.ecosystem.description,
-    componentTag: "ecosystem-page",
-  },
-  {
-    path: "/blog",
-    name: "blog",
-    title: buildPageTitle(routeCopy.blog.title),
-    description: routeCopy.blog.description,
-    componentTag: "blog-page",
-  },
-  {
-    path: "/support",
-    name: "support",
-    title: buildPageTitle(routeCopy.support.title),
-    description: routeCopy.support.description,
-    componentTag: "support-page",
-  },
+  ...orderedSitePages.map((path) => createSitePageRoute(path)),
   ...createDocumentationRoutes({
     basePath: "/docs",
     includeFallback: false,
-    locale: getKoppaLocale(),
-    pathStyle: "flat",
+    pathStyle: "nested",
   }),
-  {
-    path: "/datenschutz",
-    name: "privacy",
-    title: buildPageTitle(routeCopy.privacy.title),
-    description: routeCopy.privacy.description,
-    componentTag: "privacy-page",
-  },
-  {
-    path: "/impressum",
-    name: "imprint",
-    title: buildPageTitle(routeCopy.imprint.title),
-    description: routeCopy.imprint.description,
-    componentTag: "imprint-page",
-  },
+  ...legalSitePages.map((path) => createSitePageRoute(path)),
   {
     path: "*",
     name: "not-found",
-    title: buildPageTitle(routeCopy.notFound.title),
-    description: routeCopy.notFound.description,
+    ...getSiteRouteMeta("*"),
     componentTag: "not-found-page",
   },
 ] satisfies readonly RouteDefinition[];

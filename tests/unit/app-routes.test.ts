@@ -1,34 +1,55 @@
 import { describe, expect, it } from "vitest";
 
 import { appRoutes } from "../../src/app-routes";
-import { navigationItems } from "../../src/site-config";
 
 describe("appRoutes", () => {
-  it("covers every primary navigation path", () => {
-    const routePaths = new Set(appRoutes.map((route) => route.path));
+  it("covers the required website top-level structure", () => {
+    const routePaths = appRoutes.map((route) => route.path);
 
-    navigationItems.forEach((item) => {
-      expect(routePaths.has(item.path)).toBe(true);
-    });
-  });
-
-  it("declares metadata for every renderable route", () => {
-    const renderableRoutes = appRoutes.filter((route) => route.path !== "*");
-
-    renderableRoutes.forEach((route) => {
-      expect(route.title).toBeTruthy();
-      expect(route.description).toBeTruthy();
-      expect(route.componentTag).toBeTruthy();
-    });
-  });
-
-  it("defines a dedicated catch-all not-found route", () => {
-    expect(appRoutes).toContainEqual(
-      expect.objectContaining({
-        path: "*",
-        name: "not-found",
-        componentTag: "not-found-page",
-      }),
+    expect(routePaths).toEqual(
+      expect.arrayContaining([
+        "/",
+        "/learn",
+        "/architecture",
+        "/ecosystem",
+        "/showcase",
+        "/about",
+        "/support",
+        "/docs",
+        "/docs/overview",
+        "/impressum",
+        "/datenschutz",
+        "*",
+      ]),
     );
+  });
+
+  it("embeds the nested documentation route tree instead of reimplementing it", () => {
+    expect(appRoutes).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          path: "/docs/getting-started/installation",
+          componentTag: "documentation-page",
+        }),
+        expect.objectContaining({
+          path: "/docs/core-concepts/lifecycle",
+          componentTag: "documentation-page",
+        }),
+        expect.objectContaining({
+          path: "/docs/api",
+          componentTag: "documentation-page",
+        }),
+      ]),
+    );
+  });
+
+  it("defines explicit metadata for every final renderable route", () => {
+    appRoutes
+      .filter((route) => route.path !== "*" && !("redirectTo" in route))
+      .forEach((route) => {
+        expect(route.title).toBeTruthy();
+        expect(route.description).toBeTruthy();
+        expect(route.componentTag).toBeTruthy();
+      });
   });
 });
