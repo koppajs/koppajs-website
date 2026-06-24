@@ -2,11 +2,10 @@ import { sitePageMap } from "./site-content";
 
 export const siteMeta = {
   brand: "KoppaJS",
-  tagline: "Build interfaces without hidden magic.",
+  tagline: "Build frontends that stay clear.",
   logoTextSrc: "/koppajs-logo-text.png",
   logoIconSrc: "/koppajs-logo-icon.png",
   githubLabel: "GitHub",
-  supportLabel: "Support",
   githubOrgUrl: "https://github.com/koppajs",
   websiteRepoUrl: "https://github.com/koppajs/koppajs-website",
   docsRepoUrl: "https://github.com/koppajs/koppajs-documentation",
@@ -19,11 +18,10 @@ export type PrimaryNavigationItem = {
 };
 
 export const primaryNavigation = [
+  { label: "Start", path: "/", kind: "internal" },
   { label: "Docs", path: "/docs", kind: "docs" },
   { label: "Architecture", path: "/architecture", kind: "internal" },
   { label: "Ecosystem", path: "/ecosystem", kind: "internal" },
-  { label: "Showcase", path: "/showcase", kind: "internal" },
-  { label: "About", path: "/about", kind: "internal" },
   { label: "Get Started", path: "/learn", kind: "cta" },
 ] as const satisfies readonly PrimaryNavigationItem[];
 
@@ -32,23 +30,22 @@ export const footerNavigation = [
   { label: "Learn", path: "/learn" },
   { label: "Architecture", path: "/architecture" },
   { label: "Ecosystem", path: "/ecosystem" },
-  { label: "Showcase", path: "/showcase" },
   { label: "About", path: "/about" },
   { label: "Support", path: "/support" },
-  { label: "Impressum", path: "/impressum" },
-  { label: "Datenschutz", path: "/datenschutz" },
+  { label: "Legal Notice", path: "/impressum" },
+  { label: "Privacy", path: "/datenschutz" },
 ] as const;
 
 const homeRouteMeta = {
   title: "Home",
   description:
-    "The official KoppaJS website: product positioning, architecture, package boundaries, and the embedded documentation system.",
+    "KoppaJS is a pragmatic, focused, component-first frontend framework for reactive, modular web applications that stay clear.",
 };
 
 const learnRouteMeta = {
   title: "Learn",
   description:
-    "Entry paths into the KoppaJS documentation system, from first install to architecture and real application composition.",
+    "Choose the right KoppaJS learning path: installation, first Component, core concepts, examples, and docs.",
 };
 
 const notFoundRouteMeta = {

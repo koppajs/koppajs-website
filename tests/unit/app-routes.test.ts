@@ -12,7 +12,6 @@ describe("appRoutes", () => {
         "/learn",
         "/architecture",
         "/ecosystem",
-        "/showcase",
         "/about",
         "/support",
         "/docs",
@@ -22,6 +21,7 @@ describe("appRoutes", () => {
         "*",
       ]),
     );
+    expect(routePaths).not.toContain("/showcase");
   });
 
   it("embeds the nested documentation route tree instead of reimplementing it", () => {

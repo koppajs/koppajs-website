@@ -3,12 +3,15 @@ import { describe, expect, it } from "vitest";
 import {
   primaryNavigation,
   buildPageTitle,
+  footerNavigation,
   siteMeta,
 } from "../../src/site-config";
 import {
+  architectureValueCards,
   aboutStatements,
-  learningPaths,
-  whyKoppaCards,
+  homePerformanceCards,
+  homeProductCards,
+  homePromiseCards,
 } from "../../src/site-content";
 
 describe("site-config", () => {
@@ -20,22 +23,37 @@ describe("site-config", () => {
 
   it("keeps the top navigation aligned with the required 1.0 structure", () => {
     expect(primaryNavigation.map((item) => item.label)).toEqual([
+      "Start",
       "Docs",
       "Architecture",
       "Ecosystem",
-      "Showcase",
-      "About",
       "Get Started",
     ]);
   });
 
-  it("keeps the homepage explanation cards and learning paths distinct", () => {
-    expect(new Set(whyKoppaCards.map((item) => item.title)).size).toBe(
-      whyKoppaCards.length,
+  it("keeps the product website copy surfaces distinct", () => {
+    expect(new Set(homeProductCards.map((item) => item.title)).size).toBe(
+      homeProductCards.length,
     );
-    expect(new Set(learningPaths.map((item) => item.title)).size).toBe(
-      learningPaths.length,
+    expect(homeProductCards.map((item) => item.title)).toEqual([
+      "Core Runtime",
+      "Custom Elements",
+      "Vite Build Plugin",
+      "Extensions",
+    ]);
+    expect(homeProductCards.every((item) => item.icon)).toBe(true);
+    expect(new Set(homePromiseCards.map((item) => item.title)).size).toBe(
+      homePromiseCards.length,
+    );
+    expect(new Set(homePerformanceCards.map((item) => item.title)).size).toBe(
+      homePerformanceCards.length,
+    );
+    expect(architectureValueCards.map((item) => item.title)).toContain(
+      "Smaller runtime",
     );
     expect(aboutStatements.length).toBeGreaterThan(1);
+    expect(footerNavigation.map((item) => item.label)).toEqual(
+      expect.arrayContaining(["Legal Notice", "Privacy"]),
+    );
   });
 });

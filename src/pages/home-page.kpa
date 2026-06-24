@@ -3,14 +3,231 @@
     <section class="home-hero">
       <div class="koppa-container home-hero__grid">
         <div class="home-hero__copy">
-          <p class="koppa-eyebrow">KoppaJS</p>
-          <h1 class="home-hero__title">Build interfaces without hidden magic.</h1>
+          <p class="koppa-eyebrow">KoppaJS Frontend Framework</p>
+          <h1 class="home-hero__title">
+            Build frontends that stay clear.
+          </h1>
           <p class="home-hero__lead">
-            KoppaJS is a calm, explicit frontend system for teams that want a
-            readable runtime, deterministic routing, stable contracts, and a
-            documentation layer that behaves like a real product surface.
+            A pragmatic, component-first framework for reactive web applications.
+          </p>
+          <p class="home-hero__summary">
+            Less magic. More control. Modular where it matters,
+            explicit where it counts.
           </p>
 
+          <div class="home-hero__actions">
+            <a class="koppa-button koppa-button--primary" href="/learn" data-route="/learn">
+              Get Started
+            </a>
+            <a
+              class="koppa-button"
+              :href="githubHref"
+              target="_blank"
+              rel="noreferrer"
+            >
+              View GitHub
+            </a>
+          </div>
+
+          <p class="home-hero__trust">
+            Native custom elements · Focused core · Vite-powered builds
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="home-section">
+      <div class="koppa-container koppa-stack">
+        <div class="home-section__header">
+          <p class="koppa-eyebrow">What is KoppaJS?</p>
+          <h2 class="home-section__title">A pragmatic framework for reactive web applications.</h2>
+          <p class="koppa-text-muted">
+            KoppaJS combines a small browser runtime, custom-element Components,
+            Vite-powered builds, and explicit extension points into a
+            framework that keeps reactive interfaces understandable.
+          </p>
+        </div>
+        <div class="koppa-grid koppa-grid--4 home-feature-grid">
+          <article loop="item in productItems" class="koppa-card koppa-card--quiet home-feature-card">
+            <span if="item.icon === 'runtime'" class="home-feature-card__icon" aria-hidden="true">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                focusable="false"
+              >
+                <path d="M12 20v2"></path>
+                <path d="M12 2v2"></path>
+                <path d="M17 20v2"></path>
+                <path d="M17 2v2"></path>
+                <path d="M2 12h2"></path>
+                <path d="M2 17h2"></path>
+                <path d="M2 7h2"></path>
+                <path d="M20 12h2"></path>
+                <path d="M20 17h2"></path>
+                <path d="M20 7h2"></path>
+                <path d="M7 20v2"></path>
+                <path d="M7 2v2"></path>
+                <rect x="4" y="4" width="16" height="16" rx="2"></rect>
+                <rect x="8" y="8" width="8" height="8" rx="1"></rect>
+              </svg>
+            </span>
+            <span if="item.icon === 'elements'" class="home-feature-card__icon" aria-hidden="true">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                focusable="false"
+              >
+                <path
+                  d="M15.536 11.293a1 1 0 0 0 0 1.414l2.376 2.377a1 1 0 0 0 1.414 0l2.377-2.377a1 1 0 0 0 0-1.414l-2.377-2.377a1 1 0 0 0-1.414 0z"
+                ></path>
+                <path
+                  d="M2.297 11.293a1 1 0 0 0 0 1.414l2.377 2.377a1 1 0 0 0 1.414 0l2.377-2.377a1 1 0 0 0 0-1.414L6.088 8.916a1 1 0 0 0-1.414 0z"
+                ></path>
+                <path
+                  d="M8.916 17.912a1 1 0 0 0 0 1.415l2.377 2.376a1 1 0 0 0 1.414 0l2.377-2.376a1 1 0 0 0 0-1.415l-2.377-2.376a1 1 0 0 0-1.414 0z"
+                ></path>
+                <path
+                  d="M8.916 4.674a1 1 0 0 0 0 1.414l2.377 2.376a1 1 0 0 0 1.414 0l2.377-2.376a1 1 0 0 0 0-1.414l-2.377-2.377a1 1 0 0 0-1.414 0z"
+                ></path>
+              </svg>
+            </span>
+            <span if="item.icon === 'build'" class="home-feature-card__icon" aria-hidden="true">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                focusable="false"
+              >
+                <path
+                  d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"
+                ></path>
+              </svg>
+            </span>
+            <span if="item.icon === 'extensions'" class="home-feature-card__icon" aria-hidden="true">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                focusable="false"
+              >
+                <path
+                  d="M15.39 4.39a1 1 0 0 0 1.68-.474 2.5 2.5 0 1 1 3.014 3.015 1 1 0 0 0-.474 1.68l1.683 1.682a2.414 2.414 0 0 1 0 3.414L19.61 15.39a1 1 0 0 1-1.68-.474 2.5 2.5 0 1 0-3.014 3.015 1 1 0 0 1 .474 1.68l-1.683 1.682a2.414 2.414 0 0 1-3.414 0L8.61 19.61a1 1 0 0 0-1.68.474 2.5 2.5 0 1 1-3.014-3.015 1 1 0 0 0 .474-1.68l-1.683-1.682a2.414 2.414 0 0 1 0-3.414L4.39 8.61a1 1 0 0 1 1.68.474 2.5 2.5 0 1 0 3.014-3.015 1 1 0 0 1-.474-1.68l1.683-1.682a2.414 2.414 0 0 1 3.414 0z"
+                ></path>
+              </svg>
+            </span>
+            <h3>{{ item.title }}</h3>
+            <p class="koppa-text-muted">{{ item.body }}</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="home-section">
+      <div class="koppa-container koppa-stack">
+        <div class="home-section__header">
+          <p class="koppa-eyebrow">Core Benefits</p>
+          <h2 class="home-section__title">Clarity, control, and a smaller runtime.</h2>
+          <p class="koppa-text-muted">
+            KoppaJS is designed for teams that want component-based development,
+            modular growth, and low-overhead runtime behavior without hiding the
+            application shape.
+          </p>
+        </div>
+        <div class="koppa-grid koppa-grid--4">
+          <article loop="item in promiseItems" class="koppa-card koppa-card--quiet">
+            <h3>{{ item.title }}</h3>
+            <p class="koppa-text-muted">{{ item.body }}</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="home-section">
+      <div class="koppa-container koppa-stack">
+        <div class="home-section__header">
+          <p class="koppa-eyebrow">Why KoppaJS?</p>
+          <h2 class="home-section__title">Less magic. More control.</h2>
+          <p class="koppa-text-muted">
+            Frontend systems become expensive when the framework hides too much:
+            implicit flows, oversized APIs, and runtime behavior that is hard to
+            inspect. KoppaJS keeps the surface small so teams can understand what
+            their applications are doing.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="home-section">
+      <div class="koppa-container koppa-stack">
+        <div class="koppa-grid koppa-grid--2">
+          <article class="koppa-card koppa-card--quiet">
+            <p class="koppa-eyebrow">Component-first</p>
+            <h2>Components render as native custom elements.</h2>
+            <p class="koppa-text-muted">
+              Components are not a layer added after the fact. KoppaJS registers
+              them with the browser's Custom Elements API and keeps UI
+              structure, behavior, and reuse close enough to reason about.
+            </p>
+          </article>
+
+          <article class="koppa-card koppa-card--quiet">
+            <p class="koppa-eyebrow">Modular by design</p>
+            <h2>Use the pieces your product actually needs.</h2>
+            <p class="koppa-text-muted">
+              Core, routing, build tooling, and documentation are separate
+              capabilities. That keeps the framework small while still giving
+              teams a path from first component to a reactive application.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="home-section">
+      <div class="koppa-container koppa-stack">
+        <div class="home-section__header">
+          <p class="koppa-eyebrow">Performance Through Reduction</p>
+          <h2 class="home-section__title">Low overhead starts with a small runtime.</h2>
+          <p class="koppa-text-muted">
+            KoppaJS is built to keep runtime work constrained. The core
+            registers custom elements, runs reactive components, and leaves .kpa
+            parsing, TypeScript, Sass, and custom-element identity attributes to
+            the Vite plugin.
+          </p>
+        </div>
+        <div class="koppa-grid koppa-grid--3">
+          <article loop="item in performanceItems" class="koppa-card koppa-card--quiet">
+            <h3>{{ item.title }}</h3>
+            <p class="koppa-text-muted">{{ item.body }}</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="home-section">
+      <div class="koppa-container koppa-stack">
+        <div class="koppa-card koppa-card--quiet home-final-cta">
+          <p class="koppa-eyebrow">Intentional Architecture</p>
+          <h2>Modular where it matters. Explicit where it counts.</h2>
+          <p class="koppa-text-muted">
+            KoppaJS keeps architecture practical: every public capability should
+            have a clear purpose, every layer should be explainable, and every
+            application should remain readable after the first release.
+          </p>
           <div class="home-hero__actions">
             <a class="koppa-button koppa-button--primary" href="/learn" data-route="/learn">
               Get Started
@@ -26,282 +243,36 @@
         </div>
       </div>
     </section>
-
-    <section class="home-section">
-      <div class="koppa-container koppa-stack">
-        <div class="home-section__header">
-          <p class="koppa-eyebrow">Code Preview</p>
-          <h2 class="home-section__title">A real KoppaJS bootstrap is small enough to read directly.</h2>
-          <p class="koppa-text-muted">
-            This is the actual framework pattern: import components, register them,
-            and boot the runtime. No hidden root abstraction, no implicit component
-            scanning.
-          </p>
-        </div>
-
-        <div class="koppa-grid koppa-grid--2">
-          <div class="koppa-code-block">
-            <div class="koppa-code-block__header">
-              <span class="koppa-code-block__label">main.ts</span>
-              <button type="button" class="koppa-copy-button" data-copy-state="idle">Copy</button>
-            </div>
-            <pre><code>{{ mainCode }}</code></pre>
-          </div>
-
-          <div class="koppa-code-block">
-            <div class="koppa-code-block__header">
-              <span class="koppa-code-block__label">counter-component.kpa</span>
-              <button type="button" class="koppa-copy-button" data-copy-state="idle">Copy</button>
-            </div>
-            <pre><code>{{ componentCode }}</code></pre>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="home-section">
-      <div class="koppa-container koppa-stack">
-        <div class="home-section__header">
-          <p class="koppa-eyebrow">Why KoppaJS</p>
-          <h2 class="home-section__title">Small enough to inspect. Structured enough to ship.</h2>
-        </div>
-        <div class="koppa-grid koppa-grid--4">
-          <article loop="item in whyItems" class="koppa-card koppa-card--quiet">
-            <h3>{{ item.title }}</h3>
-            <p class="koppa-text-muted">{{ item.body }}</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="home-section">
-      <div class="koppa-container home-architecture">
-        <div class="home-section__header">
-          <p class="koppa-eyebrow">Architecture Overview</p>
-          <h2 class="home-section__title">The system is layered on purpose.</h2>
-          <p class="koppa-text-muted">
-            Runtime, router, plugins, tooling, website shell, and documentation each
-            own a visible concern. The docs package is not reimplemented in the
-            website. It is consumed.
-          </p>
-        </div>
-
-        <div class="home-architecture__diagram">
-          <div loop="layer in architectureItems" class="home-architecture__layer">
-            <span class="home-architecture__layer-name">{{ layer.title }}</span>
-            <span class="home-architecture__layer-copy">{{ layer.body }}</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="home-section">
-      <div class="koppa-container koppa-stack">
-        <div class="home-section__header">
-          <p class="koppa-eyebrow">Learning Paths</p>
-          <h2 class="home-section__title">Enter the system from the route that matches your task.</h2>
-        </div>
-        <div class="koppa-grid koppa-grid--3">
-          <article loop="item in learningItems" class="koppa-card koppa-card--quiet">
-            <h3>{{ item.title }}</h3>
-            <p class="koppa-text-muted">{{ item.body }}</p>
-            <a class="koppa-link" :href="item.href" :data-route="item.dataRoute">{{ item.linkLabel }}</a>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="home-section">
-      <div class="koppa-container koppa-stack">
-        <div class="home-section__header">
-          <p class="koppa-eyebrow">Ecosystem</p>
-          <h2 class="home-section__title">Four official packages. Four clear jobs.</h2>
-        </div>
-        <div class="koppa-grid koppa-grid--2">
-          <article loop="item in ecosystemItems" class="koppa-card koppa-card--quiet">
-            <p class="koppa-eyebrow">{{ item.role }}</p>
-            <h3>{{ item.name }}</h3>
-            <p class="koppa-text-muted">{{ item.summary }}</p>
-            <a class="koppa-link" :href="item.docsHref" :data-route="item.docsHref">Open the related docs section</a>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="home-section">
-      <div class="koppa-container koppa-stack">
-        <div class="home-section__header">
-          <p class="koppa-eyebrow">Comparison</p>
-          <h2 class="home-section__title">KoppaJS is positioned by structure, not by hype.</h2>
-        </div>
-        <div class="koppa-table-wrap">
-          <table class="koppa-table">
-            <thead>
-              <tr>
-                <th>Framework</th>
-                <th>Default model</th>
-                <th>What KoppaJS changes</th>
-                <th>Good fit</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr loop="row in comparisonItems">
-                <td>{{ row.framework }}</td>
-                <td>{{ row.defaultModel }}</td>
-                <td>{{ row.whatKoppaDoes }}</td>
-                <td>{{ row.bestFit }}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </section>
-
-    <section class="home-section">
-      <div class="koppa-container koppa-stack">
-        <div class="home-section__header">
-          <p class="koppa-eyebrow">Showcase</p>
-          <h2 class="home-section__title">Where the design choices become practical.</h2>
-        </div>
-        <div class="koppa-grid koppa-grid--3">
-          <article loop="item in showcaseItems" class="koppa-card koppa-card--quiet">
-            <h3>{{ item.title }}</h3>
-            <p class="koppa-text-muted">{{ item.body }}</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="home-section">
-      <div class="koppa-container koppa-grid koppa-grid--2">
-        <div class="koppa-card">
-          <p class="koppa-eyebrow">Stability & Trust</p>
-          <h2>Release discipline is part of the product.</h2>
-          <ul class="koppa-list">
-            <li loop="item in stabilityItems">{{ item }}</li>
-          </ul>
-        </div>
-
-        <div class="koppa-card koppa-card--quiet">
-          <p class="koppa-eyebrow">About</p>
-          <h2>Why the project exists.</h2>
-          <ul class="koppa-list">
-            <li loop="item in aboutItems">{{ item }}</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <section class="home-section home-section--final">
-      <div class="koppa-container koppa-card home-final-cta">
-        <p class="koppa-eyebrow">Start Here</p>
-        <h2>Use the website for orientation. Use the docs to work.</h2>
-        <p class="koppa-text-muted">
-          The product story and the documentation surface now share one route
-          contract, one visual language, and one architecture.
-        </p>
-        <div class="home-hero__actions">
-          <a class="koppa-button koppa-button--primary" href="/learn" data-route="/learn">
-            Get Started
-          </a>
-          <a class="koppa-button" :href="docsOverviewHref" :data-route="docsOverviewHref">
-            Read the Docs
-          </a>
-        </div>
-      </div>
-    </section>
   </article>
 [/template]
 
 [ts]
-  import { installCodeBlockCopyButtons } from "koppajs-documentation/code-blocks";
   import { getDocumentationRouteMap } from "koppajs-documentation/routes";
-  import { ecosystemPackages } from "koppajs-documentation/ecosystem";
 
+  import { siteMeta } from "../site-config";
   import {
-    aboutStatements,
-    architectureLayers,
-    comparisonRows,
-    learningPaths,
-    showcaseEntries,
-    stabilityPoints,
-    whyKoppaCards,
+    homePerformanceCards,
+    homeProductCards,
+    homePromiseCards,
   } from "../site-content";
-
-  const escapeHtml = (value) =>
-    value
-      .replaceAll("&", "&amp;")
-      .replaceAll("<", "&lt;")
-      .replaceAll(">", "&gt;");
-
-  const mainCode = escapeHtml([
-    'import { Core } from "@koppajs/koppajs-core";',
-    "",
-    'import appView from "./app-view.kpa";',
-    'import counterComponent from "./counter-component.kpa";',
-    "",
-    'Core.take(appView, "app-view");',
-    'Core.take(counterComponent, "counter-component");',
-    "Core();",
-  ].join("\n"));
-
-  const componentCode = escapeHtml([
-    "[template]",
-    '  <button type="button" onClick="increment">{{ count }}</button>',
-    "[/template]",
-    "",
-    "[ts]",
-    "  return {",
-    "    state: { count: 0 },",
-    "    methods: {",
-    "      increment() {",
-    "        this.count++;",
-    "      },",
-    "    },",
-    "  };",
-    "[/ts]",
-  ].join("\n"));
 
   return {
     state: {
       docsOverviewHref: "/docs",
-      whyItems: whyKoppaCards,
-      architectureItems: architectureLayers,
-      learningItems: [],
-      ecosystemItems: [],
-      comparisonItems: comparisonRows,
-      showcaseItems: showcaseEntries,
-      stabilityItems: stabilityPoints,
-      aboutItems: aboutStatements,
-      mainCode,
-      componentCode,
+      githubHref: siteMeta.githubOrgUrl,
+      productItems: homeProductCards,
+      promiseItems: homePromiseCards,
+      performanceItems: homePerformanceCards,
     },
     methods: {
       syncDocsLinks() {
         const routeMap = getDocumentationRouteMap();
 
         this.docsOverviewHref = routeMap["/"] ?? "/docs";
-        this.learningItems = learningPaths.map((item) => {
-          const href = item.isDocsPath ? routeMap[item.path] ?? item.path : item.path;
-
-          return {
-            ...item,
-            href,
-            dataRoute: item.isDocsPath ? href : item.path,
-            linkLabel: item.isDocsPath ? "Open docs path" : "Open website page",
-          };
-        });
-        this.ecosystemItems = ecosystemPackages.map((item) => ({
-          ...item,
-          docsHref: routeMap[item.docsPath] ?? item.docsPath,
-        }));
       },
     },
     created() {
       this.syncDocsLinks();
-    },
-    mounted() {
-      installCodeBlockCopyButtons(this.element);
     },
   };
 [/ts]

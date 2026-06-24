@@ -6,7 +6,7 @@ test.describe("preview routes", () => {
 
     await expect(
       page.getByRole("heading", {
-        name: "The system stays calm because each layer owns a specific concern.",
+        name: "Architecture that keeps frontend work understandable.",
       }),
     ).toBeVisible();
   });

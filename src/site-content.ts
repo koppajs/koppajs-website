@@ -22,25 +22,7 @@ export type SitePageDefinition = {
 type SiteCard = {
   readonly title: string;
   readonly body: string;
-};
-
-type SiteComparisonRow = {
-  readonly framework: string;
-  readonly defaultModel: string;
-  readonly whatKoppaDoes: string;
-  readonly bestFit: string;
-};
-
-type HomeLearningPath = {
-  readonly title: string;
-  readonly body: string;
-  readonly path: string;
-  readonly isDocsPath?: boolean;
-};
-
-type HomeShowcaseEntry = {
-  readonly title: string;
-  readonly body: string;
+  readonly icon?: "runtime" | "elements" | "build" | "extensions";
 };
 
 const escapeHtml = (value: string): string =>
@@ -69,11 +51,17 @@ const section = (
   </section>
 `;
 
-const card = (title: string, body: string, eyebrow?: string): string => `
+const card = (
+  title: string,
+  body: string,
+  eyebrow?: string,
+  footer?: string,
+): string => `
   <article class="koppa-card koppa-card--quiet">
     ${eyebrow ? `<p class="koppa-eyebrow">${eyebrow}</p>` : ""}
     <h3>${title}</h3>
     <p class="koppa-text-muted">${body}</p>
+    ${footer ? `<div>${footer}</div>` : ""}
   </article>
 `;
 
@@ -115,145 +103,106 @@ const table = (
   </div>
 `;
 
-const codeBlock = (label: string, language: string, source: string): string => `
-  <div class="koppa-code-block" data-language="${language}">
-    <div class="koppa-code-block__header">
-      <span class="koppa-code-block__label">${label}</span>
-      <button type="button" class="koppa-copy-button" data-copy-state="idle">Copy</button>
-    </div>
-    <pre><code>${escapeHtml(source)}</code></pre>
-  </div>
-`;
-
-export const whyKoppaCards = [
+export const homeProductCards = [
   {
-    title: "Explicit by design",
-    body: "Bootstrap, registration, routing, and documentation integration are all visible in application code.",
+    title: "Core Runtime",
+    body: "Runs component registration, reactive state, lifecycle, rendering, and DOM reconciliation in a small browser runtime.",
+    icon: "runtime",
   },
   {
-    title: "Deterministic behavior",
-    body: "Route metadata, component registration, and build transformation all use narrow contracts instead of hidden conventions.",
+    title: "Custom Elements",
+    body: "Registers Components as native custom elements so lifecycle and ownership stay close to the browser platform.",
+    icon: "elements",
   },
   {
-    title: "Stable contracts",
-    body: "Core, router, Vite plugin, and documentation each own one primary responsibility and expose a small public surface.",
+    title: "Vite Build Plugin",
+    body: "Turns .kpa files into runtime-ready modules with script, style, dependency loading, and identity attributes prepared ahead of time.",
+    icon: "build",
   },
   {
-    title: "Built to stay understandable",
-    body: "The product favors readable architecture over framework spectacle, especially once the codebase lives beyond a prototype.",
+    title: "Extensions",
+    body: "Plugins and modules add focused capabilities around the core without turning every app into an all-in-one stack.",
+    icon: "extensions",
   },
 ] as const satisfies readonly SiteCard[];
 
-export const architectureLayers = [
+export const homePromiseCards = [
   {
-    title: "core",
-    body: "Owns component registration, runtime boot, lifecycle, and reactive rendering.",
+    title: "Component-first",
+    body: "Build interfaces from small, local units instead of scattering behavior across the app.",
   },
   {
-    title: "router",
-    body: "Owns path matching, active-link state, browser history, redirects, and outlet rendering.",
+    title: "Modular",
+    body: "Use the runtime, router, tooling, and docs surfaces as separate pieces with clear jobs.",
   },
   {
-    title: "plugins",
-    body: "Own app-wide services or modules without bloating the runtime bootstrap surface.",
+    title: "Reduced",
+    body: "A smaller public surface means fewer surprises, less drift, and code that remains easier to review.",
   },
   {
-    title: "tooling",
-    body: "Owns .kpa transformation, builds, type checking, and repository quality gates.",
+    title: "Low-overhead",
+    body: "The runtime avoids a virtual DOM layer and keeps .kpa parsing, TypeScript, Sass, and custom-element identity attributes in the build pipeline.",
   },
 ] as const satisfies readonly SiteCard[];
 
-export const learningPaths = [
+export const homePerformanceCards = [
   {
-    title: "Start in 15 minutes",
-    body: "Install the supported baseline, inspect the starter, and render a first component.",
-    path: "/getting-started",
-    isDocsPath: true,
+    title: "Less runtime overhead",
+    body: "Core focuses on custom element registration, reactive updates, event binding, lifecycle, and DOM reconciliation.",
   },
   {
-    title: "Understand architecture",
-    body: "Read how the runtime, router, tooling, website shell, and docs module fit together.",
-    path: "/architecture",
+    title: "Local component ownership",
+    body: "Template, controller, and style blocks stay together in .kpa files before the Vite plugin emits runtime-ready modules.",
   },
   {
-    title: "Build a real app",
-    body: "Move from isolated components to routing, examples, and package boundary decisions.",
-    path: "/examples",
-    isDocsPath: true,
+    title: "Build-time clarity",
+    body: "The Vite plugin owns .kpa parsing, TS transpilation, Sass compilation, import dependency loaders, and custom-element identity attributes.",
   },
-] as const satisfies readonly HomeLearningPath[];
+] as const satisfies readonly SiteCard[];
 
-export const comparisonRows = [
+export const architectureValueCards = [
   {
-    framework: "React",
-    defaultModel:
-      "Library-first, ecosystem-heavy, architecture often assembled from adjacent tools.",
-    whatKoppaDoes:
-      "Ships a smaller runtime model and a narrower official package set with fewer hidden architectural decisions.",
-    bestFit:
-      "Teams that want less assembly and a more inspectable default shape.",
+    title: "Fewer surprises",
+    body: "The framework favors visible behavior over implicit flows that are hard to reason about later.",
   },
   {
-    framework: "Vue",
-    defaultModel:
-      "Integrated component model with strong conventions and a larger built-in story.",
-    whatKoppaDoes:
-      "Keeps the public surface smaller and pushes more responsibility into explicit app-owned bootstrap files.",
-    bestFit:
-      "Teams that prefer fewer conventions and tighter package boundaries.",
+    title: "Smaller runtime",
+    body: "Core stays focused on component runtime behavior and leaves .kpa transformation to the Vite plugin.",
   },
   {
-    framework: "Angular",
-    defaultModel:
-      "Comprehensive platform with a large official surface and more framework-owned structure.",
-    whatKoppaDoes:
-      "Uses a much smaller mental model, browser-first routing, and a lighter package graph.",
-    bestFit: "Teams that want less platform weight and more direct control.",
+    title: "Clear ownership",
+    body: "Components, routing, tooling, and documentation each have a job that can be understood independently.",
   },
   {
-    framework: "Lit",
-    defaultModel:
-      "Low-level Web Components primitives with more application structure left to the user.",
-    whatKoppaDoes:
-      "Adds a clearer application model around .kpa files, bootstrapping, and official routing/tooling.",
-    bestFit:
-      "Teams that like Web Components but want a stronger product-shaped baseline.",
+    title: "Modular growth",
+    body: "Teams can add capabilities when they need them without turning every application into the full stack.",
   },
-] as const satisfies readonly SiteComparisonRow[];
-
-export const showcaseEntries = [
-  {
-    title: "Internal operations surfaces",
-    body: "Admin and workflow tools where explicit routing, readable state updates, and maintainable bootstrap code matter more than trend alignment.",
-  },
-  {
-    title: "Long-lived documentation and portal apps",
-    body: "Products that benefit from a stable layout shell, deterministic navigation, and first-class code examples in the UI.",
-  },
-  {
-    title: "Focused browser applications",
-    body: "Apps that do not need a large plugin marketplace, but do need understandable component boundaries and predictable builds.",
-  },
-] as const satisfies readonly HomeShowcaseEntry[];
-
-export const stabilityPoints = [
-  "Semantic versioning is part of the product trust surface, not release decoration.",
-  "Repository-local quality gates exist across typechecking, unit tests, browser tests, and build output.",
-  "Route tables, metadata, and docs integration are explicit rather than inferred.",
-  "The public packages are narrow enough to version and review deliberately.",
-] as const;
+] as const satisfies readonly SiteCard[];
 
 export const aboutStatements = [
-  "KoppaJS exists for teams that want direct control over frontend architecture without building everything from raw browser primitives.",
-  "The project favors explicit seams, small contracts, and deterministic structure over marketing-friendly abstraction.",
-  "The goal is not minimalism as an aesthetic. The goal is a codebase that remains legible under maintenance pressure.",
+  "KoppaJS exists for developers who want productive frontend tools without losing control of the application shape.",
+  "It is built for reactive interfaces where readability, performance, and explicit behavior matter after the first release.",
+  "The project treats reduction as a product decision: not less ambition, but less unnecessary surface area.",
 ] as const;
 
-const ecosystemRows = ecosystemPackages.map((item) => [
-  ic(item.name),
-  item.role,
-  item.summary,
-]);
+const ecosystemPitchByKey = new Map([
+  [
+    "core",
+    "Start with the runtime that registers custom elements, runs component controllers, manages reactive updates, and reconciles DOM.",
+  ],
+  [
+    "router",
+    "Add routing when your product needs deterministic navigation, deep links, redirects, and application-level page flow.",
+  ],
+  [
+    "vite-plugin",
+    "Use the Vite plugin to parse .kpa files, compile TS/Sass where needed, inject custom-element identity attributes, and emit runtime-ready modules.",
+  ],
+  [
+    "documentation",
+    "Use the documentation package when you want the official docs experience as a standalone app or embedded product surface.",
+  ],
+] as const);
 
 export const sitePages = [
   {
@@ -261,97 +210,81 @@ export const sitePages = [
     label: "Architecture",
     title: "Architecture",
     description:
-      "System layers, ownership boundaries, and the contract between the website shell and the documentation module.",
+      "Why KoppaJS architecture stays small, explicit, component-first, and practical for reactive frontend applications.",
     eyebrow: "Architecture",
-    headline:
-      "The system stays calm because each layer owns a specific concern.",
-    lead: "KoppaJS is not presented as a monolith. The public website explains the product, the documentation app teaches it, and the packages keep runtime, routing, and build responsibilities separate.",
+    headline: "Architecture that keeps frontend work understandable.",
+    lead: "KoppaJS is designed around a simple product promise: build reactive web applications without letting the framework become the hardest part to understand.",
     actions: [
       {
-        label: "Read the Docs",
-        path: "/overview",
+        label: "Read Architecture Docs",
+        path: "/architecture",
         isDocsPath: true,
         variant: "primary",
       },
-      { label: "View Packages", path: "/ecosystem" },
+      { label: "Explore Ecosystem", path: "/ecosystem" },
     ],
     bodyHtml: [
       section(
-        "System Layers",
-        "The architecture is modular by design.",
-        "Each major layer is small enough to explain directly and stable enough to review independently.",
+        "Product Value",
+        "Less magic. More control.",
+        "The architecture is intentionally visible so teams can understand what runs, what builds, and where responsibilities live.",
         cardGrid(
           4,
-          architectureLayers.map((layer) =>
-            card(layer.title, layer.body, "Layer"),
+          architectureValueCards.map((item) =>
+            card(item.title, item.body, "Benefit"),
           ),
         ),
       ),
       section(
-        "Assembly Contract",
-        "The website imports the documentation contract directly.",
-        "That keeps one route model, one metadata model, and one navigation source instead of parallel website-owned documentation logic.",
-        codeBlock(
-          "website/main.ts",
-          "ts",
-          [
-            "import {",
-            "  getDocumentationRouteMeta,",
-            "  installDocumentationRouteMap,",
-            "  registerDocumentation,",
-            '} from "koppajs-documentation";',
-            "",
-            "registerDocumentation();",
-            "installDocumentationRouteMap({",
-            '  basePath: "/docs",',
-            '  pathStyle: "nested",',
-            "});",
-          ].join("\n"),
-        ),
+        "Component Ownership",
+        "Applications stay readable when behavior has a clear home.",
+        "KoppaJS puts components at the center of the application model. Structure, behavior, and reuse stay close enough to inspect instead of spreading across hidden framework layers.",
+        cardGrid(3, [
+          card(
+            "Clear boundaries",
+            "Components make product surfaces easier to divide, review, and evolve.",
+            "Components",
+          ),
+          card(
+            "Local reasoning",
+            "Developers can follow behavior from the component outward before reaching for broader application concerns.",
+            "Components",
+          ),
+          card(
+            "Long-term shape",
+            "The architecture helps applications remain explainable as screens, routes, and teams grow.",
+            "Components",
+          ),
+        ]),
       ),
       section(
-        "Ownership Map",
-        "The product stays coherent because ownership is explicit.",
-        "The website presents KoppaJS as a product. The documentation package teaches it. Neither side should silently absorb the other's responsibility.",
-        table(
-          ["Concern", "Website", "Documentation package"],
-          [
-            [
-              "Public product routes",
-              "Owns marketing-neutral product pages such as /, /learn, /architecture, and /about.",
-              "Does not redefine them.",
-            ],
-            [
-              "Documentation route tree",
-              "Consumes generated docs routes under /docs.",
-              "Exports route generation, route metadata, and navigation structure.",
-            ],
-            [
-              "Documentation navigation",
-              "Reads exported navigation items.",
-              "Owns labels, hierarchy, and page ordering.",
-            ],
-            [
-              "Visual system",
-              "Imports shared theme tokens and package data.",
-              "Publishes the reusable theme foundation and shared docs UI contract.",
-            ],
-          ],
-        ),
+        "Runtime And Build-Time",
+        "The right work happens in the right place.",
+        "KoppaJS keeps runtime behavior focused and moves .kpa transformation into explicit tooling. That separation is a practical reason the framework can stay small and predictable.",
+        list([
+          "Runtime registers custom elements, runs component controllers, manages reactive updates, and reconciles DOM.",
+          "Build tooling handles .kpa parsing, TS transpilation, Sass compilation, and custom-element identity attributes before the browser sees the app.",
+          "Routing and documentation are added as product capabilities, not hidden core weight.",
+        ]),
       ),
       section(
-        "Request Flow",
-        "A route moves through a visible chain of responsibility.",
-        "You should be able to point at each step in code: route creation, metadata lookup, component registration, and final rendering.",
-        list(
-          [
-            "The website route table matches either a website-owned page or a documentation route generated by the documentation package.",
-            "The runtime registers website components and documentation components separately before the router renders anything.",
-            "Metadata comes from website route definitions or from getDocumentationRouteMeta(...) depending on the current path.",
-            "The final page renders inside the website shell or the standalone documentation shell without duplicating documentation ownership.",
-          ],
-          true,
-        ),
+        "Technical Depth",
+        "The product site explains why. The docs explain how.",
+        "If you are ready to inspect the exact contracts, route model, component lifecycle, or build pipeline, the documentation goes deeper without turning this page into an API manual.",
+        cardGrid(2, [
+          card(
+            "Architecture docs",
+            "Read the detailed model for layers, boundaries, and integration points.",
+            "Documentation",
+            '<a class="koppa-link" href="/docs/architecture" data-route="/docs/architecture">Open architecture docs</a>',
+          ),
+          card(
+            "Core concepts",
+            "Learn the component model, templates, reactivity, props, events, slots, and lifecycle.",
+            "Documentation",
+            '<a class="koppa-link" href="/docs/core-concepts" data-route="/docs/core-concepts">Open core concepts</a>',
+          ),
+        ]),
       ),
     ].join("\n"),
   },
@@ -360,10 +293,10 @@ export const sitePages = [
     label: "Ecosystem",
     title: "Ecosystem",
     description:
-      "Official package map for KoppaJS: runtime, router, Vite plugin, and documentation as one coherent product system.",
+      "Official KoppaJS packages presented as product capabilities: runtime, routing, build tooling, and documentation.",
     eyebrow: "Ecosystem",
-    headline: "A small package set with clear ownership boundaries.",
-    lead: "The official ecosystem is intentionally narrow. Each package exists for a reason, and the boundaries are part of what makes the system maintainable.",
+    headline: "Small official packages. Clear product capabilities.",
+    lead: "KoppaJS keeps its ecosystem focused so teams can add only the pieces their application actually needs.",
     actions: [
       {
         label: "Package Docs",
@@ -376,137 +309,50 @@ export const sitePages = [
     bodyHtml: [
       section(
         "Official Packages",
-        "These are the maintained product surfaces.",
-        "The goal is not ecosystem size. The goal is a package graph that remains inspectable and stable.",
+        "Modular where it matters.",
+        "Each official package exists to make one part of the product usable without forcing the rest of the ecosystem into every app.",
         cardGrid(
           2,
           ecosystemPackages.map((item) =>
             card(
               item.name,
-              `${item.summary} ${item.installCommand ? `Install with ${ic(item.installCommand)}.` : ""}`,
+              ecosystemPitchByKey.get(item.key) ?? item.summary,
               item.role,
+              `<a class="koppa-link" href="${item.href}" target="_blank" rel="noreferrer">Open repository</a>`,
             ),
           ),
         ),
       ),
       section(
-        "Responsibilities",
-        "The package split is part of the architecture.",
-        "You should be able to explain why each package is installed by reading the manifest and the route or build setup.",
-        table(["Package", "Role", "Why it exists"], ecosystemRows),
-      ),
-      section(
         "Adoption Path",
-        "Add packages when the product boundary becomes real.",
-        "The narrow package graph is useful only if applications introduce packages deliberately instead of defaulting to the whole stack at once.",
-        table(
-          ["Application shape", "Packages", "Reason"],
-          [
-            [
-              "Single routed-less surface",
-              `${ic("@koppajs/koppajs-core")} + ${ic("@koppajs/koppajs-vite-plugin")}`,
-              "Enough to register components, transform .kpa files, and ship one explicit browser surface.",
-            ],
-            [
-              "Route-based product",
-              `${ic("@koppajs/koppajs-core")} + ${ic("@koppajs/koppajs-router")} + ${ic("@koppajs/koppajs-vite-plugin")}`,
-              "Adds deterministic navigation, deep links, redirects, and outlet rendering without expanding the runtime contract.",
-            ],
-            [
-              "Public product with integrated docs",
-              `${ic("@koppajs/koppajs-core")} + ${ic("@koppajs/koppajs-router")} + ${ic("@koppajs/koppajs-vite-plugin")} + ${ic("koppajs-documentation")}`,
-              "Extends the product with a standalone and embeddable documentation surface that still keeps ownership separate.",
-            ],
-          ],
-        ),
-      ),
-      section(
-        "Selection Discipline",
-        "Introduce packages when the application boundary demands them.",
-        "A team should be able to justify every official package in use with one short sentence.",
-        list([
-          `${ic("@koppajs/koppajs-core")} is the runtime baseline.`,
-          `${ic("@koppajs/koppajs-router")} becomes relevant when routes, deep links, redirects, or fallback pages are product requirements.`,
-          `${ic("@koppajs/koppajs-vite-plugin")} owns .kpa transformation and should stay the only build-time owner of that concern.`,
-          `${ic("koppajs-documentation")} owns the public docs surface and the website embed contract.`,
-        ]),
-      ),
-    ].join("\n"),
-  },
-  {
-    path: "/showcase",
-    label: "Showcase",
-    title: "Showcase",
-    description:
-      "Realistic KoppaJS use cases and product surfaces where explicit architecture and a small mental model are practical advantages.",
-    eyebrow: "Showcase",
-    headline:
-      "KoppaJS is built for serious browser surfaces, not novelty demos.",
-    lead: "The product is best understood through realistic application categories rather than fake company logos or decorative landing-page demos.",
-    actions: [
-      {
-        label: "View Examples",
-        path: "/examples",
-        isDocsPath: true,
-        variant: "primary",
-      },
-      { label: "Learn Architecture", path: "/architecture" },
-    ],
-    bodyHtml: [
-      section(
-        "Where It Fits",
-        "These are the kinds of products the architecture is shaped for.",
-        "The common thread is not industry. It is the need for stable boundaries and explicit ownership in the browser layer.",
-        cardGrid(
-          3,
-          showcaseEntries.map((item) =>
-            card(item.title, item.body, "Use case"),
+        "Start small and add capabilities deliberately.",
+        "The package set is intentionally narrow. That makes it easier to understand why each dependency is present and what user-facing capability it unlocks.",
+        cardGrid(3, [
+          card(
+            "First component",
+            `${ic("@koppajs/koppajs-core")} plus ${ic("@koppajs/koppajs-vite-plugin")} is enough to start building component-based browser surfaces.`,
+            "Start",
           ),
-        ),
-      ),
-      section(
-        "Reference Surfaces",
-        "The examples are realistic because the requirements are realistic.",
-        "KoppaJS is most useful when the browser layer needs to stay comprehensible under release pressure, not just during the first demo.",
-        table(
-          ["Surface", "Why KoppaJS fits", "Typical package set"],
-          [
-            [
-              "Operations console",
-              "Route ownership, readable state updates, and direct component boundaries matter more than ecosystem breadth.",
-              `${ic("@koppajs/koppajs-core")} + ${ic("@koppajs/koppajs-router")} + ${ic("@koppajs/koppajs-vite-plugin")}`,
-            ],
-            [
-              "Documentation or portal product",
-              "Navigation, code examples, and stable content structure benefit from the documentation embed contract.",
-              `${ic("@koppajs/koppajs-core")} + ${ic("@koppajs/koppajs-router")} + ${ic("@koppajs/koppajs-vite-plugin")} + ${ic("koppajs-documentation")}`,
-            ],
-            [
-              "Focused workflow dashboard",
-              "Long-lived business logic benefits from a smaller mental model and deterministic builds.",
-              `${ic("@koppajs/koppajs-core")} + ${ic("@koppajs/koppajs-router")} + ${ic("@koppajs/koppajs-vite-plugin")}`,
-            ],
-          ],
-        ),
-      ),
-      section(
-        "What These Surfaces Have In Common",
-        "The fit is architectural, not aesthetic.",
-        "These projects usually benefit from direct control over route definitions, build behavior, and component boundaries.",
-        list([
-          "A route map that should remain easy to audit.",
-          "A repository that values CI, explicit versioning, and deterministic builds.",
-          "A team that prefers visible contracts over framework-owned hidden behavior.",
+          card(
+            "Routed application",
+            `Add ${ic("@koppajs/koppajs-router")} when navigation, deep links, redirects, and page state become product requirements.`,
+            "Grow",
+          ),
+          card(
+            "Documented product",
+            `Use ${ic("koppajs-documentation")} when a project needs a maintained documentation surface around the system.`,
+            "Explain",
+          ),
         ]),
       ),
       section(
-        "Non-Goals",
-        "The product is intentionally not shaped for every frontend problem.",
-        "That restraint keeps the ecosystem smaller and the defaults easier to reason about.",
+        "Why A Small Ecosystem Helps",
+        "A focused stack is easier to trust.",
+        "KoppaJS does not try to win with a large package catalog. It aims to keep the official path understandable, installable, and easy to evaluate.",
         list([
-          "Large plugin-marketplace strategies where a framework is expected to solve every adjacent concern.",
-          "SSR-first application architectures that require a server rendering contract the current runtime does not claim to provide.",
-          "Brand-heavy marketing microsites where animation density matters more than inspectable application structure.",
+          "Fewer official packages make the product easier to audit.",
+          "Clear package roles keep runtime, routing, build, and docs concerns separate.",
+          "Teams can adopt more of the stack without losing sight of what changed.",
         ]),
       ),
     ].join("\n"),
@@ -516,14 +362,13 @@ export const sitePages = [
     label: "About",
     title: "About",
     description:
-      "Why KoppaJS exists, what kind of engineering it values, and what the project is trying to protect in frontend architecture.",
+      "The product story behind KoppaJS: a pragmatic, focused, component-first frontend framework for reactive and maintainable web applications.",
     eyebrow: "About",
-    headline:
-      "KoppaJS exists to keep frontend architecture inspectable under real maintenance pressure.",
-    lead: "The project is built around a calm idea: browser applications should not become harder to understand just because the tooling or framework layer becomes more capable.",
+    headline: "Built for reactive frontends that need to stay clear.",
+    lead: "KoppaJS exists for teams that want a pragmatic framework, not a black box. It is small on purpose, component-first by design, and explicit where product code needs control.",
     actions: [
       {
-        label: "Read the Docs",
+        label: "Get Started",
         path: "/overview",
         isDocsPath: true,
         variant: "primary",
@@ -532,68 +377,60 @@ export const sitePages = [
     ],
     bodyHtml: [
       section(
-        "Why The Project Exists",
-        "The product is shaped by long-term maintainability concerns.",
-        "KoppaJS exists for teams that do not want to trade readability away when the application starts to matter.",
+        "Why KoppaJS Exists",
+        "Frontend tools should make applications clearer, not harder to inspect.",
+        "Many frameworks add comfort by hiding more behavior. KoppaJS takes a different path: reduce the surface, keep responsibilities visible, and give developers a framework that stays understandable.",
         list(aboutStatements, true),
       ),
       section(
-        "What The Project Optimizes For",
-        "The priorities are architectural before they are cosmetic.",
-        "The result should feel precise, structured, stable, and deliberate rather than feature-stacked or noisy.",
+        "What It Values",
+        "Pragmatic reduction over feature spectacle.",
+        "The project is shaped around product work where maintainability matters: dashboards, tools, documentation surfaces, and applications that need to be changed with confidence.",
         cardGrid(3, [
           card(
-            "Explicit structure",
-            "Route metadata, component registration, and docs integration should remain visible in code.",
+            "Clarity",
+            "Developers should be able to see how components are assembled and where behavior comes from.",
             "Value",
           ),
           card(
-            "Deterministic behavior",
-            "The same inputs should produce the same route, build, and rendering outcomes.",
+            "Performance",
+            "The fastest abstraction is often the one that avoids doing unnecessary work in the first place.",
             "Value",
           ),
           card(
-            "Calm architecture",
-            "The codebase should still be explainable after multiple releases and team changes.",
+            "Longevity",
+            "A smaller framework surface helps applications survive release cycles, refactors, and team changes.",
             "Value",
           ),
         ]),
       ),
       section(
-        "Non-Goals",
-        "The project protects clarity by refusing a few common framework instincts.",
-        "KoppaJS is easier to understand precisely because it does not try to become an all-encompassing platform.",
+        "Who It Fits",
+        "KoppaJS is for teams that prefer explicit control.",
+        "It is a good fit when you want component-based frontend architecture, a small runtime, and a modular path from simple surfaces to routed applications.",
         list([
-          "It does not hide bootstrap, routing, or documentation registration behind generated conventions.",
-          "It does not expand the public package set unless the responsibility split is clear and durable.",
-          "It does not optimize for novelty demos that rely on spectacle more than maintainable structure.",
+          "You want applications built from clear component units.",
+          "You prefer small APIs over broad all-in-one convenience.",
+          "You care about keeping runtime overhead low before the final optimization pass.",
+          "You want build-time work and runtime behavior to stay easy to distinguish.",
         ]),
       ),
       section(
-        "Maintenance Discipline",
-        "Long-term readability requires operational discipline, not just a design philosophy.",
-        "The framework only stays trustworthy if contracts, documentation, and releases are treated as product surfaces.",
-        table(
-          ["Area", "Commitment"],
-          [
-            [
-              "Public API",
-              "Keep the top-level surface small and version changes deliberately under semver.",
-            ],
-            [
-              "Documentation",
-              "Treat docs navigation, route metadata, and examples as canonical system behavior, not secondary content.",
-            ],
-            [
-              "Build layer",
-              "Keep .kpa transformation inside one explicit Vite plugin boundary instead of scattering build behavior.",
-            ],
-            [
-              "Quality gates",
-              "Use type checks, tests, and production build validation to protect the visible contract.",
-            ],
-          ],
-        ),
+        "What It Is Not",
+        "Not more framework than necessary.",
+        "KoppaJS is not trying to hide every decision or provide a giant default platform. It is for teams that see clarity as a feature.",
+        cardGrid(2, [
+          card(
+            "Not magic-first",
+            "KoppaJS avoids surprising behavior that is convenient at first and expensive to debug later.",
+            "Boundary",
+          ),
+          card(
+            "Not all-in-one",
+            "The ecosystem grows through focused packages instead of pushing every capability into the core.",
+            "Boundary",
+          ),
+        ]),
       ),
     ].join("\n"),
   },
@@ -602,10 +439,10 @@ export const sitePages = [
     label: "Support",
     title: "Support",
     description:
-      "How to support KoppaJS through usage, contracts, documentation, tests, and direct funding for maintenance work.",
+      "How to support KoppaJS through GitHub issues, focused pull requests, documentation fixes, and examples.",
     eyebrow: "Support",
-    headline: "A small ecosystem stays healthy through deliberate backing.",
-    lead: "Support is not framed as hype. It is about funding the work that keeps a small framework credible: examples, tests, docs, release discipline, and issue triage.",
+    headline: "Help make KoppaJS clearer, smaller, and easier to use.",
+    lead: "The project improves through real usage, actionable issues, focused pull requests, better examples, and documentation fixes.",
     actions: [
       {
         label: "Open GitHub",
@@ -616,80 +453,48 @@ export const sitePages = [
     ],
     bodyHtml: [
       section(
-        "Support Lanes",
-        "There are several ways to make the ecosystem stronger.",
-        "The best form of support depends on whether you are a user, maintainer, or organization evaluating KoppaJS for real product work.",
+        "Support Paths",
+        "Concrete feedback is the most useful support.",
+        "KoppaJS is small enough that focused contributions can quickly improve the experience for everyone evaluating or using the framework.",
         cardGrid(3, [
           card(
-            "Use it deliberately",
-            "Production use on a focused surface is the strongest feedback signal for architecture and docs.",
-            "Lane",
+            "Report issues",
+            "Share reproducible bugs, unclear behavior, or documentation gaps in the relevant repository.",
+            "GitHub",
           ),
           card(
-            "Tighten contracts",
-            "Issues, docs fixes, and test improvements help the ecosystem more than vague encouragement.",
-            "Lane",
+            "Improve docs",
+            "Fix unclear onboarding, examples, API notes, and product explanations when they do not match real usage.",
+            "Docs",
           ),
           card(
-            "Fund maintenance",
-            "Direct support creates time for documentation, CI hardening, release discipline, and package stability work.",
-            "Lane",
+            "Open focused PRs",
+            "Small, specific changes are easier to review and keep aligned with the product direction.",
+            "Code",
           ),
         ]),
       ),
       section(
-        "Contribution Standard",
-        "Useful support is concrete.",
-        "Small ecosystems improve fastest when issues, pull requests, and architecture proposals are specific enough to act on immediately.",
+        "Where To Start",
+        "Use the public repositories for coordination.",
+        "Until additional channels are published, GitHub remains the official place for issues, pull requests, and project discussion.",
         list([
-          "Report bugs with repository, browser, version, and reproduction details instead of generic symptoms.",
-          "Treat missing examples and unclear documentation as first-class product defects.",
-          "Propose contract changes with ownership, migration impact, and package boundaries stated explicitly.",
-        ]),
-      ),
-      section(
-        "What Support Funds",
-        "Maintenance work is product work.",
-        "In a small ecosystem, documentation depth, CI coverage, and release discipline are part of the product trust surface.",
-        table(
-          ["Area", "Why it matters"],
-          [
-            [
-              "Documentation depth",
-              "Keeps onboarding, examples, and API reference aligned with the real public contract.",
-            ],
-            [
-              "Test and CI coverage",
-              "Protects route behavior, embeddable docs behavior, and deterministic production builds.",
-            ],
-            [
-              "Maintenance time",
-              "Supports issue triage, semver review, dependency updates, and product-quality examples.",
-            ],
-          ],
-        ),
-      ),
-      section(
-        "Current Official Paths",
-        "The public coordination surface is intentionally simple.",
-        "Until a deployment publishes additional official support channels, the repositories remain the canonical public entry point.",
-        list([
-          'Use <a class="koppa-link" href="https://github.com/koppajs" target="_blank" rel="noreferrer">github.com/koppajs</a> and repository issues for public coordination.',
-          "Use pull requests for documentation fixes, example updates, and contract clarifications.",
-          "Treat any deployment-specific funding or support links as official only when they are published directly by the deployment operator.",
+          'Open the organization at <a class="koppa-link" href="https://github.com/koppajs" target="_blank" rel="noreferrer">github.com/koppajs</a>.',
+          "Use repository issues for bugs, unclear documentation, and feature discussions.",
+          "Use pull requests for docs fixes, examples, tests, and focused implementation improvements.",
         ]),
       ),
     ].join("\n"),
   },
   {
     path: "/impressum",
-    label: "Impressum",
-    title: "Impressum",
+    label: "Legal Notice",
+    title: "Legal Notice",
     description:
       "Current project and contact information available inside the KoppaJS repositories for the public website surface.",
-    eyebrow: "Impressum",
+    eyebrow: "Legal Notice",
     headline: "Project notice for the current open-source website surface.",
-    lead: "The repositories identify KoppaJS as the public project surface and Bastian Bensch as the named maintainer on multiple maintained repositories. Public project contact currently happens through the official GitHub organization and repository issue trackers.",
+    lead: "This page describes the information currently present in the maintained KoppaJS repositories. A deployed domain may require additional operator-specific details.",
     bodyHtml: [
       section(
         "Project Surface",
@@ -702,19 +507,9 @@ export const sitePages = [
         ]),
       ),
       section(
-        "Scope Of This Notice",
-        "This route documents the information currently present in the maintained project repositories.",
-        "If this application is deployed on a domain with additional legal operator requirements, that domain operator must add the legally required operator details for that deployment.",
-        list([
-          "No commercial storefront is implemented in the current website codebase.",
-          "No user account system or submission form is implemented in the current website codebase.",
-          "External repository links point to GitHub-hosted project surfaces.",
-        ]),
-      ),
-      section(
-        "Repository Boundary",
-        "The repository implementation and the deployed operator are separate concerns.",
-        "This source tree describes the current open-source product surface. A deployment may carry additional legal or operational obligations that are outside the repository itself.",
+        "Deployment Scope",
+        "Repository content and deployment operation are separate concerns.",
+        "If this application is deployed on a domain with additional legal operator requirements, that domain operator must add the required operator details for that deployment.",
         table(
           ["Surface", "Current repository statement"],
           [
@@ -737,13 +532,13 @@ export const sitePages = [
   },
   {
     path: "/datenschutz",
-    label: "Datenschutz",
-    title: "Datenschutz",
+    label: "Privacy",
+    title: "Privacy",
     description:
       "Privacy summary for the current KoppaJS website codebase and its implemented browser behavior.",
-    eyebrow: "Datenschutz",
+    eyebrow: "Privacy",
     headline: "Privacy summary for the current static website implementation.",
-    lead: "The website codebase is a client-side application shell. The current implementation does not ship analytics, cookies, account flows, or form submissions. Normal web hosting logs may still exist at the deployment layer.",
+    lead: "The current website implementation does not ship analytics, cookies, account flows, or form submissions. Normal web hosting logs may still exist at the deployment layer.",
     bodyHtml: [
       section(
         "Application Behavior",
@@ -765,28 +560,6 @@ export const sitePages = [
           "Document any third-party embeds or payment links added during deployment.",
           "Update the legal notice when the deployed surface diverges from the repository implementation.",
         ]),
-      ),
-      section(
-        "When This Notice Must Change",
-        "The privacy notice should change when behavior changes.",
-        "A calm privacy surface lists implemented behavior only. New integrations must not remain implicit.",
-        table(
-          ["Change", "Documentation impact"],
-          [
-            [
-              "Analytics or telemetry added",
-              "Document provider, data categories, retention, and any consent requirements.",
-            ],
-            [
-              "Forms, accounts, or payments added",
-              "Document collected fields, legal basis, processors, and user rights handling.",
-            ],
-            [
-              "Third-party embeds introduced",
-              "Document which external services receive browser requests and why they are necessary.",
-            ],
-          ],
-        ),
       ),
     ].join("\n"),
   },

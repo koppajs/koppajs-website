@@ -6,7 +6,6 @@ import { getSiteRouteMeta } from "./site-config";
 const orderedSitePages = [
   "/architecture",
   "/ecosystem",
-  "/showcase",
   "/about",
   "/support",
 ] as const;

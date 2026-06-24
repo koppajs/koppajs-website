@@ -71,9 +71,10 @@ The website is intentionally **marketing-first** rather than documentation-first
 It is responsible for:
 
 - explaining why KoppaJS exists and what kind of teams it fits
-- presenting the official ecosystem around core, router, and the Vite plugin
+- presenting the official ecosystem around core, router, the Vite plugin, and
+  documentation releases
 - creating a clear entry path for new users without duplicating full docs
-- making support, contribution, and funding conversations explicit
+- making support and contribution paths explicit through the public repositories
 
 Detailed package documentation remains owned by the package repos and the
 dedicated documentation repository.
@@ -102,13 +103,12 @@ Local requirements:
 
 The current route baseline includes:
 
-- `/` for the main product, architecture, and package overview
+- `/` for the main product, Core runtime, package, and release overview
 - `/learn` for structured entry paths into the documentation system
 - `/architecture` for the website/docs boundary and system ownership map
 - `/ecosystem` for the official package landscape
-- `/showcase` for realistic application categories and fit
 - `/about` for project intent and non-goals
-- `/support` for contribution and funding paths
+- `/support` for contribution, issue, documentation, and pull request paths
 - `/docs/*` for the embedded documentation application
 - `/impressum` and `/datenschutz` for the current legal and privacy surfaces
 - `*` for a dedicated not-found experience
@@ -149,7 +149,7 @@ npm run test:browser
 The website now serves as the public product surface for KoppaJS:
 
 - a routed KoppaJS application with a dark-first design system shared with the documentation package
-- a complete public route structure for product framing, architecture, ecosystem, showcase, support, and legal pages
+- a focused public route structure for product framing, architecture, ecosystem, support, and legal pages
 - embedded documentation mounted through the exported documentation contract instead of website-owned reimplementation
 - local unit and browser test coverage plus CI validation on Node 22 and 24
 

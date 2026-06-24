@@ -21,6 +21,34 @@ Changes will only appear here when they:
 
 ---
 
+## [0.0.2] - Product Positioning Refresh
+
+**2026-06-24**
+
+This release updates the public KoppaJS website positioning while keeping the
+embedded documentation pinned to the existing `koppajs-documentation` `v0.0.1`
+baseline.
+
+### Changed
+
+- Reworked the homepage around the clearer product promise, focused package
+  capabilities, component-first positioning, and runtime/build-time boundaries
+- Refined the Learn, Architecture, Ecosystem, About, and Support copy to align
+  the website with the current public product framing
+- Updated the primary navigation and footer labels for the focused public route
+  structure
+- Expanded browser and unit coverage for the updated homepage structure,
+  navigation behavior, and route metadata
+
+### Removed
+
+- Removed the standalone `/showcase` route from public navigation and route
+  expectations
+- Removed the header support icon action in favor of repository and page-level
+  support paths
+
+---
+
 ## [0.0.1] - Initial Website Baseline
 
 **2026-03-28**

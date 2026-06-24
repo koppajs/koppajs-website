@@ -3,11 +3,11 @@
     <div class="koppa-container site-footer__grid">
       <section class="site-footer__block site-footer__block--brand">
         <p class="koppa-eyebrow">KoppaJS</p>
-        <h2 class="site-footer__title">Calm architecture for browser applications that need to stay readable.</h2>
+        <h2 class="site-footer__title">Clear frontends, fewer surprises.</h2>
         <p class="koppa-text-muted">
-          The website frames the product. The documentation package teaches and
-          references it. Both surfaces follow the same package boundaries and the
-          same visual system.
+          A pragmatic, focused, component-first framework for reactive web
+          applications that need less hidden behavior, more control, and a
+          runtime focused on custom-element Components.
         </p>
       </section>
 

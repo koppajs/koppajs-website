@@ -17,15 +17,19 @@ The repository must provide a routed marketing website that:
 - explains the project philosophy and intended fit
 - gives new users a clear adoption path without duplicating full reference
   documentation
-- includes explicit support and funding messaging for the ecosystem
+- includes explicit support and contribution messaging for the ecosystem
 
 The current route surface must include:
 
 - `/`
+- `/learn`
+- `/architecture`
 - `/ecosystem`
-- `/philosophy`
-- `/start`
+- `/about`
 - `/support`
+- `/docs/*`
+- `/impressum`
+- `/datenschutz`
 - a catch-all not-found route
 
 Every final route must declare:

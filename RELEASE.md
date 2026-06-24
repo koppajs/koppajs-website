@@ -30,8 +30,10 @@ Important consequences:
 - release notes must already exist in `CHANGELOG.md`
 - `koppajs-documentation` must point to a fixed GitHub tag archive, not a local
   `file:` dependency
-- the matching `koppajs-documentation` tag must exist before the website tag is
+- the pinned `koppajs-documentation` tag must exist before the website tag is
   pushed
+- website-only releases may keep the previous `koppajs-documentation` tag when
+  the embedded documentation baseline has not changed
 - browser tests are part of the release gate, not optional follow-up work
 - the deploy uploads the generated `dist/` artifact, including
   `dist/.htaccess`
@@ -45,8 +47,10 @@ Before cutting a release, ensure all of the following are true:
 - `package.json` contains the target version
 - `CHANGELOG.md` contains the corresponding release notes
 - `README.md` and contributor docs reflect the current public surface
-- `koppajs-documentation` has already been released and tagged
-- `package.json` points to the intended documentation tag
+- if the release updates the embedded documentation baseline,
+  `koppajs-documentation` has already been released and tagged
+- `package.json` points to the intended documentation tag, which may be the
+  previous tag for website-only releases
 - `src/.htaccess` contains the production SPA rewrite rules
 - the lockfile is up to date
 - all checks and browser tests pass
@@ -89,20 +93,22 @@ Why this matters:
 
 ## Release Steps
 
-1. Release `koppajs-documentation` for the same version first.
-2. Wait until the documentation GitHub Actions release workflow has passed.
-3. Merge the released documentation `main` branch back into its `develop`
-   branch.
-4. Finalize the website release content on the intended release branch.
-5. Update `package.json` and `CHANGELOG.md`.
-6. Pin `koppajs-documentation` to the released documentation tag.
-7. Run the local validation commands.
-8. Merge the release-ready website state into `main`.
-9. Tag the website release commit on `main` as `vX.Y.Z`.
-10. Push the tag.
-11. Verify that GitHub Actions creates the GitHub Release and deploys the
+1. If the website release updates the embedded documentation baseline, release
+   `koppajs-documentation` first and wait until its GitHub Actions release
+   workflow has passed.
+2. If a documentation release was created, merge the released documentation
+   `main` branch back into its `develop` branch.
+3. Finalize the website release content on the intended release branch.
+4. Update `package.json` and `CHANGELOG.md`.
+5. Pin `koppajs-documentation` to the intended documentation tag. For
+   website-only releases, keep the existing documentation tag.
+6. Run the local validation commands.
+7. Merge the release-ready website state into `main`.
+8. Tag the website release commit on `main` as `vX.Y.Z`.
+9. Push the tag.
+10. Verify that GitHub Actions creates the GitHub Release and deploys the
     website over FTP.
-12. Merge the released website `main` branch back into `develop`.
+11. Merge the released website `main` branch back into `develop`.
 
 Do not tag `develop`.
 Do not tag the release branch.

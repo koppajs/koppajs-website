@@ -1,4 +1,30 @@
-import { expect, test } from "@playwright/test";
+import { expect, test, type Page } from "@playwright/test";
+
+const expectHeroToFillViewportAndCenterContent = async (
+  page: Page,
+  heroSelector: string,
+  contentSelector: string,
+) => {
+  const [heroHeight, headerHeight, viewportHeight, heroBox, contentBox] =
+    await Promise.all([
+      page.locator(heroSelector).evaluate((element) => element.clientHeight),
+      page.locator(".site-header").evaluate((element) => element.clientHeight),
+      page.evaluate(() => window.innerHeight),
+      page.locator(heroSelector).boundingBox(),
+      page.locator(contentSelector).boundingBox(),
+    ]);
+
+  expect(heroHeight + headerHeight).toBeGreaterThanOrEqual(viewportHeight - 1);
+  expect(heroBox).not.toBeNull();
+  expect(contentBox).not.toBeNull();
+  expect(
+    Math.abs(
+      contentBox!.y +
+        contentBox!.height / 2 -
+        (heroBox!.y + heroBox!.height / 2),
+    ),
+  ).toBeLessThanOrEqual(2);
+};
 
 test.describe("website navigation", () => {
   test("renders the homepage and required homepage structure", async ({
@@ -12,28 +38,230 @@ test.describe("website navigation", () => {
     );
     await expect(page.locator(".brand-mark__logo")).toBeVisible();
     await expect(page.locator(".site-header__github")).toBeVisible();
-    await expect(page.locator(".site-header__support")).toBeVisible();
     await expect(
       page.getByRole("heading", {
-        name: "Build interfaces without hidden magic.",
+        name: "Build frontends that stay clear.",
+      }),
+    ).toBeVisible();
+    await expect(
+      page.getByText(
+        "A pragmatic, component-first framework for reactive web applications.",
+      ),
+    ).toBeVisible();
+    await expect(
+      page.getByRole("heading", {
+        name: "A pragmatic framework for reactive web applications.",
+      }),
+    ).toBeVisible();
+    await expect(page.locator(".home-feature-card")).toHaveCount(4);
+    await expect(
+      page
+        .locator(".home-feature-card")
+        .getByRole("heading", { name: "Extensions" }),
+    ).toBeVisible();
+    await expect(
+      page
+        .locator(".home-feature-card")
+        .getByRole("heading", { name: "Documentation" }),
+    ).toHaveCount(0);
+    await expect(page.locator(".home-feature-card__icon svg")).toHaveCount(4);
+    await expect(page.locator(".home-feature-card__icon path[d]")).toHaveCount(
+      18,
+    );
+    await expect(page.locator(".home-feature-card__icon rect")).toHaveCount(2);
+    await expect(page.locator(".home-feature-card__cutout-glow")).toHaveCount(
+      0,
+    );
+    await expect(page.locator(".home-feature-card__bottom-cutout")).toHaveCount(
+      0,
+    );
+    const [
+      featureGridBox,
+      featureCardBox,
+      featureIconBox,
+      featureHeadingBox,
+      coreBenefitsHeadingBox,
+    ] = await Promise.all([
+      page.locator(".home-feature-grid").boundingBox(),
+      page.locator(".home-feature-card").first().boundingBox(),
+      page.locator(".home-feature-card__icon").first().boundingBox(),
+      page
+        .locator(".home-feature-card")
+        .getByRole("heading", { name: "Core Runtime" })
+        .boundingBox(),
+      page
+        .locator("main")
+        .getByRole("heading", {
+          name: "Clarity, control, and a smaller runtime.",
+        })
+        .boundingBox(),
+    ]);
+
+    expect(featureGridBox).not.toBeNull();
+    expect(featureCardBox).not.toBeNull();
+    expect(featureIconBox).not.toBeNull();
+    expect(featureHeadingBox).not.toBeNull();
+    expect(coreBenefitsHeadingBox).not.toBeNull();
+    await expect
+      .poll(async () =>
+        page
+          .locator(".home-feature-card")
+          .first()
+          .evaluate((element) => {
+            const cutoutLayer = getComputedStyle(element, "::before");
+
+            return (
+              cutoutLayer.maskImage ||
+              cutoutLayer.getPropertyValue("-webkit-mask-image")
+            );
+          }),
+      )
+      .toContain("radial-gradient");
+    await expect
+      .poll(async () =>
+        page
+          .locator(".home-feature-card")
+          .first()
+          .evaluate((element) => {
+            const cutoutBorder = getComputedStyle(element, "::after");
+
+            return {
+              animationName: cutoutBorder.animationName,
+              borderRadius: cutoutBorder.borderRadius,
+              boxShadow: cutoutBorder.boxShadow,
+              clipPath: cutoutBorder.clipPath,
+              width: cutoutBorder.width,
+            };
+          }),
+      )
+      .toMatchObject({
+        animationName: "none",
+        borderRadius: "50%",
+      });
+    expect(featureIconBox!.width).toBeGreaterThanOrEqual(180);
+    expect(featureIconBox!.height).toBeGreaterThanOrEqual(180);
+    const cutoutBorderWidth = await page
+      .locator(".home-feature-card")
+      .first()
+      .evaluate((element) =>
+        Number.parseFloat(getComputedStyle(element, "::after").width),
+      );
+    expect(cutoutBorderWidth).toBeLessThan(featureIconBox!.width);
+    await expect
+      .poll(async () =>
+        page
+          .locator(".home-feature-card__icon")
+          .first()
+          .evaluate((element) => {
+            const iconStyle = getComputedStyle(element);
+
+            return {
+              animationName: iconStyle.animationName,
+              backgroundColor: iconStyle.backgroundColor,
+              borderTopWidth: iconStyle.borderTopWidth,
+              color: iconStyle.color,
+              filter: iconStyle.filter,
+            };
+          }),
+      )
+      .toMatchObject({
+        animationName: "home-feature-icon-float",
+        backgroundColor: "rgba(0, 0, 0, 0)",
+        borderTopWidth: "0px",
+        color: "rgb(100, 220, 232)",
+      });
+    expect(featureIconBox!.y).toBeLessThan(featureCardBox!.y);
+    expect(featureHeadingBox!.y).toBeGreaterThan(
+      featureIconBox!.y + featureIconBox!.height + 8,
+    );
+    expect(featureHeadingBox!.y).toBeLessThan(featureCardBox!.y + 170);
+    expect(coreBenefitsHeadingBox!.y).toBeGreaterThan(
+      featureGridBox!.y + featureGridBox!.height + 40,
+    );
+    expect(
+      Math.abs(
+        featureIconBox!.x +
+          featureIconBox!.width / 2 -
+          (featureCardBox!.x + featureCardBox!.width / 2),
+      ),
+    ).toBeLessThanOrEqual(2);
+    await expect(
+      page.locator("main").getByRole("heading", {
+        name: "Clarity, control, and a smaller runtime.",
       }),
     ).toBeVisible();
     await expect(
       page.getByRole("heading", {
-        name: "A real KoppaJS bootstrap is small enough to read directly.",
-      }),
-    ).toBeVisible();
-    await expect(
-      page.getByRole("heading", {
-        name: "Four official packages. Four clear jobs.",
+        name: "Low overhead starts with a small runtime.",
       }),
     ).toBeVisible();
 
-    const [heroHeight, headerHeight, viewportHeight] = await Promise.all([
-      page.locator(".home-hero").evaluate((element) => element.clientHeight),
-      page.locator(".site-header").evaluate((element) => element.clientHeight),
-      page.evaluate(() => window.innerHeight),
-    ]);
+    const readDocsLink = page
+      .locator("main")
+      .getByRole("link", { name: "Read the Docs" });
+    await expect(readDocsLink).toHaveAttribute("href", /\/docs(\/overview)?$/);
+    await expect(
+      page.locator("main").getByRole("link", { name: "View GitHub" }),
+    ).toHaveAttribute("href", "https://github.com/koppajs");
+
+    await expect(page.locator(".home-page .koppa-code-block")).toHaveCount(0);
+    await expect(page.locator(".home-architecture__layer")).toHaveCount(0);
+    expect(
+      await page.locator(".home-page article.koppa-card").count(),
+    ).toBeGreaterThanOrEqual(10);
+    await expect(page.getByRole("link", { name: "v3.0.7" })).toHaveCount(0);
+    await expect(page.getByRole("link", { name: "v0.1.2" })).toHaveCount(0);
+    await expect(page.locator(".home-release-overview")).toHaveCount(0);
+    await expect(
+      page.getByText("Official packages and current releases."),
+    ).toHaveCount(0);
+    await expect(
+      page.getByText("Public coordination stays in the repositories."),
+    ).toHaveCount(0);
+    await expect(
+      page.getByText("@koppajs/koppajs-core is the runtime package"),
+    ).toHaveCount(0);
+    await expect(
+      page.getByText(
+        "Native custom elements · Focused core · Vite-powered builds",
+      ),
+    ).toBeVisible();
+    await expect(
+      page.getByRole("heading", {
+        name: "Modular where it matters. Explicit where it counts.",
+      }),
+    ).toBeVisible();
+    await expect(
+      page.getByLabel("Primary navigation").getByRole("link", {
+        name: "Start",
+        exact: true,
+      }),
+    ).toHaveAttribute("href", "/");
+    await expect(
+      page.getByLabel("Primary navigation").getByRole("link", {
+        name: "Showcase",
+      }),
+    ).toHaveCount(0);
+    await expect(
+      page.locator(".site-footer").getByRole("link", { name: "Showcase" }),
+    ).toHaveCount(0);
+    await expect(
+      page
+        .locator(".site-footer")
+        .getByText("Clear frontends, fewer surprises."),
+    ).toBeVisible();
+    await expect(
+      page.locator(".site-footer").getByRole("link", { name: "Legal Notice" }),
+    ).toBeVisible();
+    await expect(
+      page.locator(".site-footer").getByRole("link", { name: "Privacy" }),
+    ).toBeVisible();
+
+    await expectHeroToFillViewportAndCenterContent(
+      page,
+      ".home-hero",
+      ".home-hero__copy",
+    );
     const [
       headerRailBox,
       headerBarPaddingLeft,
@@ -66,9 +294,6 @@ test.describe("website navigation", () => {
         ),
     ]);
 
-    expect(heroHeight + headerHeight).toBeGreaterThanOrEqual(
-      viewportHeight - 2,
-    );
     expect(headerRailBox).not.toBeNull();
     expect(mainBox).not.toBeNull();
     expect(Math.abs(headerRailBox!.x - mainBox!.x)).toBeLessThanOrEqual(1);
@@ -99,9 +324,14 @@ test.describe("website navigation", () => {
     await expect(page).toHaveURL(/\/learn$/);
     await expect(
       page.getByRole("heading", {
-        name: "A structured path into the KoppaJS documentation system.",
+        name: "Start building with a clear path.",
       }),
     ).toBeVisible();
+    await expectHeroToFillViewportAndCenterContent(
+      page,
+      ".site-page__hero",
+      ".site-page__hero-copy",
+    );
 
     await page
       .getByLabel("Primary navigation")
@@ -110,7 +340,7 @@ test.describe("website navigation", () => {
     await expect(page).toHaveURL(/\/architecture$/);
     await expect(
       page.getByRole("heading", {
-        name: "The system stays calm because each layer owns a specific concern.",
+        name: "Architecture that keeps frontend work understandable.",
       }),
     ).toBeVisible();
 
@@ -121,7 +351,7 @@ test.describe("website navigation", () => {
     await expect(page).toHaveURL(/\/ecosystem$/);
     await expect(
       page.getByRole("heading", {
-        name: "A small package set with clear ownership boundaries.",
+        name: "Small official packages. Clear product capabilities.",
       }),
     ).toBeVisible();
 
@@ -132,7 +362,7 @@ test.describe("website navigation", () => {
     );
     await expect(
       page.getByRole("heading", {
-        name: "Understand the system before you start wiring components.",
+        name: "Understand how KoppaJS works before you wire an app.",
       }),
     ).toBeVisible();
     await expect(page.getByLabel("Documentation navigation")).toBeVisible();
@@ -185,7 +415,7 @@ test.describe("website navigation", () => {
 
     await expect(
       page.getByRole("heading", {
-        name: "A small ecosystem stays healthy through deliberate backing.",
+        name: "Help make KoppaJS clearer, smaller, and easier to use.",
       }),
     ).toBeVisible();
 
@@ -226,35 +456,24 @@ test.describe("website navigation", () => {
       const githubIcon = page.locator(
         ".site-header__github .site-header__action-icon",
       );
-      const supportIcon = page.locator(
-        ".site-header__support .site-header__support-icon",
-      );
       const nav = page.locator(".site-nav");
       const toggle = page.locator(".site-header__menu-toggle");
       const logoImage = page.locator(".brand-mark__logo");
 
-      const [
-        barBox,
-        brandBox,
-        actionsBox,
-        docsBox,
-        githubIconBox,
-        supportIconBox,
-      ] = await Promise.all([
-        bar.boundingBox(),
-        brand.boundingBox(),
-        actions.boundingBox(),
-        docsAction.boundingBox(),
-        githubIcon.boundingBox(),
-        supportIcon.boundingBox(),
-      ]);
+      const [barBox, brandBox, actionsBox, docsBox, githubIconBox] =
+        await Promise.all([
+          bar.boundingBox(),
+          brand.boundingBox(),
+          actions.boundingBox(),
+          docsAction.boundingBox(),
+          githubIcon.boundingBox(),
+        ]);
 
       expect(barBox).not.toBeNull();
       expect(brandBox).not.toBeNull();
       expect(actionsBox).not.toBeNull();
       expect(docsBox).not.toBeNull();
       expect(githubIconBox).not.toBeNull();
-      expect(supportIconBox).not.toBeNull();
 
       expect(barBox!.width).toBeLessThanOrEqual(1442);
       expect(Math.abs(barBox!.height - 64)).toBeLessThanOrEqual(2);
@@ -262,7 +481,6 @@ test.describe("website navigation", () => {
       expect(brandBox!.height).toBeGreaterThanOrEqual(28);
       expect(docsBox!.height).toBeGreaterThanOrEqual(35);
       expect(githubIconBox!.width).toBeGreaterThanOrEqual(15.5);
-      expect(supportIconBox!.width).toBeGreaterThanOrEqual(15.5);
 
       const brandCenterY = brandBox!.y + brandBox!.height / 2;
       const actionsCenterY = actionsBox!.y + actionsBox!.height / 2;
@@ -365,6 +583,11 @@ test.describe("website navigation", () => {
     const panelBox = await mobilePanel.boundingBox();
 
     expect(panelBox).not.toBeNull();
+    await expect(
+      page
+        .getByLabel("Mobile navigation links")
+        .getByRole("link", { name: "Start", exact: true }),
+    ).toHaveAttribute("href", "/");
     await expect
       .poll(async () => {
         const box = await mobilePanel.boundingBox();

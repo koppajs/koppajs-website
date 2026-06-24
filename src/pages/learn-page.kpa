@@ -3,10 +3,10 @@
     <section class="site-page__hero">
       <div class="koppa-container site-page__hero-copy">
         <p class="koppa-eyebrow">Learn</p>
-        <h1 class="site-page__title">A structured path into the KoppaJS documentation system.</h1>
+        <h1 class="site-page__title">Start building with a clear path.</h1>
         <p class="site-page__lead">
-          The website should not duplicate the docs. It should help you enter the
-          docs from the right place and understand which path to follow next.
+          Choose the first step that matches your goal: install the framework,
+          build your first Component, understand the model, or move into examples.
         </p>
       </div>
     </section>
@@ -25,12 +25,11 @@
     <section class="site-page__section">
       <div class="koppa-container koppa-stack">
         <div class="home-section__header">
-          <p class="koppa-eyebrow">Documentation Areas</p>
-          <h2 class="home-section__title">The documentation is structured by responsibility, not by blog-style chronology.</h2>
+          <p class="koppa-eyebrow">Learning Paths</p>
+          <h2 class="home-section__title">Move from product promise to working code.</h2>
           <p class="koppa-text-muted">
-            Each top-level area explains one part of the system so you can move
-            from orientation into reference without losing the architectural
-            thread.
+            The documentation goes deeper when you need implementation detail.
+            Start with the path closest to what you are trying to build.
           </p>
         </div>
 
@@ -48,8 +47,8 @@
     <section class="site-page__section">
       <div class="koppa-container site-learn__grid">
         <div class="koppa-card">
-          <p class="koppa-eyebrow">Documentation Structure</p>
-          <h2>Use the exported docs navigation instead of a website-only summary.</h2>
+          <p class="koppa-eyebrow">Documentation Topics</p>
+          <h2>Explore the technical guide by topic.</h2>
           <div class="site-learn__nav-tree">
             <div loop="item in docsItems" class="site-learn__nav-group">
               <a class="site-learn__nav-link" :href="item.href" :data-route="item.href">
@@ -73,19 +72,19 @@
           <aside class="koppa-card koppa-card--quiet">
             <p class="koppa-eyebrow">Reading Order</p>
             <ol class="koppa-list">
-              <li>Open installation or manual setup if you are evaluating the runtime from scratch.</li>
-              <li>Read core concepts before deciding how much routing or package layering you need.</li>
-              <li>Use routing, tooling, API, and packages once the mental model is stable.</li>
-              <li>Return to architecture and migration when the app boundary becomes long-lived.</li>
+              <li>Install the baseline and render a first Component.</li>
+              <li>Read core concepts to understand how KoppaJS structures UI work.</li>
+              <li>Add routing and tooling knowledge when the product surface grows.</li>
+              <li>Use examples, packages, and migration notes for real application shape.</li>
             </ol>
           </aside>
 
           <aside class="koppa-card koppa-card--quiet">
-            <p class="koppa-eyebrow">Website And Docs</p>
+            <p class="koppa-eyebrow">Product And Docs</p>
             <ul class="koppa-list">
-              <li>The website frames the product and helps you choose the right entry path.</li>
-              <li>The documentation package owns the canonical docs routes, metadata, and navigation tree.</li>
-              <li>The same contract powers the standalone docs app and the embedded /docs surface.</li>
+              <li>The website explains why KoppaJS is worth evaluating.</li>
+              <li>The docs explain how the framework works in code.</li>
+              <li>Use this page when you know the outcome but not the next technical step.</li>
             </ul>
           </aside>
         </div>
@@ -111,31 +110,31 @@
 
       this.docsItems = getDocumentationNavigationItems();
       this.docsAreas = this.docsItems.map((item) => ({
-        kicker: `${item.children.length} child page${item.children.length === 1 ? "" : "s"}`,
+        kicker: `${item.children.length} topic${item.children.length === 1 ? "" : "s"}`,
         title: item.label,
         body: item.description,
         href: item.children[0]?.href ?? item.href,
-        linkLabel: item.children.length ? "Open section" : "Open page",
+        linkLabel: item.children.length ? "Open topic" : "Open page",
       }));
       this.startPaths = [
         {
-          kicker: "Start in 15 minutes",
-          title: "Installation and first component",
-          body: "Get the supported baseline running and render a real component before adding more surface area.",
+          kicker: "Start",
+          title: "Install and render a Component",
+          body: "Get the supported baseline running and see KoppaJS on screen before adding routing or extra packages.",
           href: routeMap["/getting-started/installation"] ?? "/docs/getting-started/installation",
           linkLabel: "Open installation",
         },
         {
-          kicker: "Understand architecture",
-          title: "Architecture and package boundaries",
-          body: "Read how runtime, router, tooling, website shell, and docs integration are split.",
-          href: routeMap["/architecture"] ?? "/docs/architecture",
-          linkLabel: "Open architecture",
+          kicker: "Understand",
+          title: "Learn the component model",
+          body: "Read how Components, templates, state, props, events, slots, and lifecycle fit together.",
+          href: routeMap["/core-concepts/components"] ?? "/docs/core-concepts/components",
+          linkLabel: "Open components",
         },
         {
-          kicker: "Build a real app",
-          title: "Routing, examples, and migration",
-          body: "Use the examples and migration sections once you are moving past the first component.",
+          kicker: "Build",
+          title: "Move into examples",
+          body: "Use examples once you are ready to shape a routed, maintainable application.",
           href: routeMap["/examples"] ?? "/docs/examples",
           linkLabel: "Open examples",
         },
